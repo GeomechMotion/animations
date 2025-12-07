@@ -1,0 +1,159 @@
+/* ----------------------------------------------------
+   GENERAL LAYOUT
+---------------------------------------------------- */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: #111;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ----------------------------------------------------
+   NAVBAR SUPERIOR
+---------------------------------------------------- */
+
+.navbar {
+    width: 100%;
+    background: #222;
+    padding: 12px 25px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    gap: 25px;
+    border-bottom: 1px solid #333;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar a {
+    color: #eee;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.navbar a:hover {
+    color: #7cc4ff;
+}
+
+/* ----------------------------------------------------
+   SIDEBAR
+---------------------------------------------------- */
+
+.sidebar {
+    width: 240px;
+    background: #1a1a1a;
+    padding: 20px;
+    box-sizing: border-box;
+    border-right: 1px solid #333;
+    position: fixed;
+    top: 48px; /* altura del navbar */
+    bottom: 0;
+    overflow-y: auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+/* ----------------------------------------------------
+   COURSE BLOCK
+---------------------------------------------------- */
+
+.course-block {
+    margin-top: 25px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+}
+
+.course-block h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.prof-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.prof {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.prof-img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.prof-name {
+    font-size: 0.95rem;
+}
+
+/* ----------------------------------------------------
+   CONTACT LINKS
+---------------------------------------------------- */
+
+.contact-block {
+    margin-top: 30px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+}
+
+.contact-block a {
+    display: block;
+    color: #7cc4ff;
+    margin-bottom: 8px;
+    text-decoration: none;
+}
+
+.contact-block a:hover {
+    text-decoration: underline;
+}
+
+/* ----------------------------------------------------
+   MAIN CONTENT AREA
+---------------------------------------------------- */
+
+.main-content {
+    margin-left: 260px; /* espacio del sidebar */
+    padding: 40px;
+    box-sizing: border-box;
+    max-width: 1100px;
+}
+
+h1, h2 {
+    color: #fff;
+}
+
+/* videos */
+video {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 6px;
+    border: 1px solid #333;
+    margin-bottom: 10px;
+}
+
+section {
+    margin-bottom: 50px;
+}
