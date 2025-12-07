@@ -1,208 +1,161 @@
-/* GENERAL */
-
+/* === LAYOUT GENERAL === */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f7f7f7;
+    font-family: 'Segoe UI', sans-serif;
+    background: #F8F8F8;
 }
-
-a {
-    color: #ffffff; /* FIXED – now visible on blue */
-    opacity: 0.9;
-    text-decoration: none;
-}
-a:hover {
-    opacity: 1;
-}
-
-/* SIDEBAR */
 
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 260px;
-    height: 100vh;
-    background: #0055a4;
+    width: 320px;
+    background: #0057A3;
     color: white;
-    padding: 20px;
+    height: 100vh;
     overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
 }
 
-/* BIO BEFORE LOGO */
-
-.brand-bio {
-    font-size: 13px;
-    margin-bottom: 18px;
-    opacity: 0.95;
-    line-height: 1.3;
+.main-content {
+    margin-left: 320px;
+    padding: 40px;
 }
 
-/* LOGO */
-
+/* === LOGO GIGANTE === */
 .brand-logo {
-    width: 120px;
-    height: 120px;
-    background: rgba(255,255,255,0.2);
+    width: 140px;
+    height: 140px;
+    background: rgba(255,255,255,0.15);
     border-radius: 50%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 48px;
+    align-items: center;
+    font-size: 64px;
     font-weight: 700;
-    margin: 0 auto 10px auto;
+    margin: 0 auto 15px auto;
 }
 
-/* BRAND */
-
+/* === TITULO GEOmechMotion === */
 .brand-name {
-    text-align: center;
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 700;
+    text-align: center;
 }
 
 .brand-desc {
     text-align: center;
-    font-size: 12px;
-    opacity: 0.9;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-/* PROFILE */
+/* === LOREM IPSUM === */
+.intro-text {
+    font-size: 14px;
+    line-height: 1.35;
+    margin-bottom: 20px;
+}
 
+/* === PERFIL === */
 .person-block {
     display: flex;
-    gap: 12px;
-    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
 
 .profile-avatar {
-    width: 58px;
-    height: 58px;
-    background: rgba(255,255,255,0.25);
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
+    background: rgba(255,255,255,0.2);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 26px;
-    font-weight: 700;
-    flex-shrink: 0;
+    font-size: 22px;
+    font-weight: 600;
+    margin-right: 10px;
 }
 
 .profile-name {
     color: white;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 17px;
+    text-decoration: none;
+}
+
+.profile-name:hover {
+    opacity: 0.85;
 }
 
 .icon-li {
-    width: 14px;
-    height: 14px;
-    margin-left: 5px;
-    vertical-align: middle;
+    width: 16px;
+    margin-left: 4px;
 }
 
 .profile-desc {
-    font-size: 12px;
-    opacity: 0.9;
+    font-size: 13px;
     margin-top: 4px;
 }
 
-/* SECTION TITLES */
-
+/* === TITULOS DE SECCIÓN === */
 .section-title {
-    margin-top: 15px;
-    font-size: 14px;
     font-weight: 700;
-    text-transform: uppercase;
+    margin-top: 25px;
+    margin-bottom: 8px;
+    font-size: 15px;
 }
 
-.section-title-sub {
-    margin-top: 10px;
-    font-size: 12px;
-    font-weight: 600;
-    opacity: 0.9;
-}
-
-/* COURSES */
-
-.course-list {
+/* === LISTAS === */
+ul {
     padding-left: 18px;
 }
 
-.course-list li {
+li {
     margin-bottom: 6px;
-    font-size: 14px;
 }
 
-.spa-label {
-    font-size: 11px;
-    opacity: 0.75;
+/* === LINKS EN SIDEBAR ===*/
+.sidebar a {
+    color: #D9ECFF;
+    text-decoration: none;
 }
 
-.icon-external {
-    margin-left: 4px;
-    opacity: 0.9;
-    font-size: 14px;
-    color: #ffffff;
+.sidebar a:hover {
+    text-decoration: underline;
 }
 
-/* INSTRUCTORS */
+/* === LINKS SOBRE FONDO BLANCO === */
+.main-content a {
+    color: #0057A3;
+    font-weight: 600;
+}
 
+.main-content a:hover {
+    text-decoration: underline;
+}
+
+/* === OTHER INSTRUCTORS === */
 .prof-mini {
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .prof-mini-img {
-    width: 26px;
-    height: 26px;
-    background: rgba(255,255,255,0.25);
+    width: 32px;
+    height: 32px;
+    background: rgba(255,255,255,0.2);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
+    margin-right: 8px;
+    font-weight: 600;
 }
 
-.prof-mini-name {
+.prof-mini-name img {
+    width: 14px;
+    margin-left: 4px;
+}
+
+/* Reduce font size in Resources */
+.uba-links li {
     font-size: 13px;
-}
-
-/* RESOURCES – FIXED INVISIBLE LINKS */
-
-.uba-links li a {
-    font-size: 12px;
-    opacity: 0.95;
-    color: #ffffff; /* NOW VISIBLE */
-}
-
-.uba-links li a:hover {
-    opacity: 1;
-}
-
-/* NAVBAR */
-
-.navbar {
-    margin-left: 260px;
-    height: 48px;
-    background: #222;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 0 20px;
-}
-
-.navbar a {
-    color: white;
-    font-size: 14px;
-}
-
-/* MAIN CONTENT */
-
-.main-content {
-    margin-left: 260px;
-    padding: 20px 30px;
 }
