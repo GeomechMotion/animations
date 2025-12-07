@@ -20,7 +20,7 @@ body {
     color: white;
     padding: 20px;
     overflow-y: auto;
-    z-index: 1000;   /* ✔ NECESARIO PARA LAYERS */
+    z-index: 1000;
 }
 
 .sidebar a {
@@ -49,20 +49,20 @@ body {
 
 .brand-name {
     text-align: center;
-    font-size: 26px;
+    font-size: 22px;   /* reducido */
     font-weight: 700;
     margin-top: 5px;
 }
 
 .brand-desc {
     text-align: center;
-    margin-bottom: 15px;
-    font-size: 14px;
+    margin-bottom: 10px;
+    font-size: 13px;   /* reducido */
 }
 
 /* --- INTRO TEXT --- */
 .intro-text {
-    font-size: 15px;
+    font-size: 14px;   /* reducido */
     line-height: 1.35;
     margin: 15px 0 25px 0;
 }
@@ -73,7 +73,7 @@ body {
     display: flex;
     gap: 12px;
     margin-bottom: 10px;
-    align-items: center;   /* ✔ FIX: evita avatar ovalado */
+    align-items: center;
 }
 
 .profile-avatar {
@@ -89,18 +89,18 @@ body {
 }
 
 .profile-name {
+    font-size: 15px;  /* reducido */
     font-weight: bold;
-    font-size: 17px;
 }
 
 .profile-desc {
-    font-size: 13px;
+    font-size: 12px;  /* reducido */
     line-height: 1.35;
     margin-top: 2px;
 }
 
 .icon-li {
-    width: 14px;
+    width: 12px;   /* reducida */
     vertical-align: middle;
     margin-left: 4px;
 }
@@ -110,16 +110,16 @@ body {
 .section-title {
     margin-top: 25px;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 14px;   /* reducido */
     border-bottom: 1px solid rgba(255,255,255,0.3);
     padding-bottom: 4px;
 }
 
-/* --- COURSES --- */
+/* --- COURSES / LINKS --- */
 
 .course-list li {
     margin-bottom: 5px;
-    font-size: 15px;
+    font-size: 14px;   /* reducido */
 }
 
 .spa-label {
@@ -127,8 +127,6 @@ body {
     opacity: 0.9;
     margin-left: 4px;
 }
-
-/* --- FACULTY MINI BLOCKS --- */
 
 .prof-mini {
     display: flex;
@@ -149,10 +147,8 @@ body {
 }
 
 .prof-mini-name {
-    font-size: 14px;
+    font-size: 13px;  /* reducido */
 }
-
-/* --- RESOURCES --- */
 
 .uba-links {
     font-size: 13px;
@@ -169,7 +165,7 @@ body {
 .navbar {
     position: fixed;
     top: 0;
-    left: 320px;        /* ✔ empieza a la derecha del sidebar */
+    left: 320px;
     right: 0;
     height: 50px;
     background: #111;
@@ -177,8 +173,8 @@ body {
     display: flex;
     align-items: center;
     padding-left: 20px;
-    z-index: 2000;      /* ✔ por encima del sidebar */
-    border-bottom: 1px solid #222; /* opcional pero elegante */
+    z-index: 2000;
+    border-bottom: 1px solid #222;
 }
 
 .navbar a {
@@ -198,7 +194,7 @@ body {
 
 .main-content {
     margin-left: 320px;
-    padding: 80px 40px 40px 40px; /* espacio por navbar */
+    padding: 80px 40px 40px 40px;
 }
 
 .main-content a {
