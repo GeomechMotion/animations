@@ -1,83 +1,89 @@
-/* ----------------------------------------------------
-   GENERAL LAYOUT
----------------------------------------------------- */
+/* ---------------------------------------------------------
+   FONTS
+--------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+/* ---------------------------------------------------------
+   BASE STYLES
+--------------------------------------------------------- */
 
 body {
     margin: 0;
     padding: 0;
-    font-family: "Segoe UI", Roboto, Arial, sans-serif;
     background: #111;
-    color: #eee;
+    color: #e5e5e5;
+    font-family: "Inter", sans-serif;
     display: flex;
     flex-direction: column;
 }
 
-/* ----------------------------------------------------
+/* ---------------------------------------------------------
    NAVBAR SUPERIOR
----------------------------------------------------- */
+--------------------------------------------------------- */
 
 .navbar {
     width: 100%;
-    background: #222;
-    padding: 12px 25px;
-    box-sizing: border-box;
+    background: #1b1b1b;
+    padding: 12px 24px;
     display: flex;
-    justify-content: flex-start;
-    gap: 25px;
-    border-bottom: 1px solid #333;
-    position: sticky;
+    gap: 24px;
+    box-sizing: border-box;
+    position: fixed;
     top: 0;
-    z-index: 10;
+    left: 0;
+    z-index: 50;
+    border-bottom: 1px solid #333;
 }
 
 .navbar a {
-    color: #eee;
+    color: #e5e5e5;
     text-decoration: none;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 15px;
 }
 
 .navbar a:hover {
     color: #7cc4ff;
 }
 
-/* ----------------------------------------------------
-   SIDEBAR
----------------------------------------------------- */
+/* ---------------------------------------------------------
+   SIDEBAR IZQUIERDO (AZUL UBA)
+--------------------------------------------------------- */
 
 .sidebar {
-    width: 240px;
-    background: #1a1a1a;
-    padding: 20px;
-    box-sizing: border-box;
-    border-right: 1px solid #333;
     position: fixed;
-    top: 48px; /* altura del navbar */
+    top: 48px; /* debajo del navbar */
+    left: 0;
+    width: 260px;
     bottom: 0;
+    background: #0055A4; /* azul UBA */
+    padding: 22px;
+    box-sizing: border-box;
+    color: white;
     overflow-y: auto;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 25px;
-    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
     text-align: center;
+    margin-bottom: 25px;
     letter-spacing: 1px;
 }
 
-/* ----------------------------------------------------
-   COURSE BLOCK
----------------------------------------------------- */
+/* ---------------------------------------------------------
+   COURSE SECTION
+--------------------------------------------------------- */
 
 .course-block {
-    margin-top: 25px;
-    border-top: 1px solid #333;
-    padding-top: 15px;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.3);
 }
 
 .course-block h3 {
-    margin-top: 0;
-    font-size: 1.1rem;
+    margin: 0 0 12px 0;
+    font-size: 16px;
     text-align: center;
 }
 
@@ -97,63 +103,60 @@ body {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: #444;
+    background: rgba(255,255,255,0.25);
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: #ccc;
-    font-size: 14px;
+    align-items: center;
+    font-weight: 600;
 }
 
-.prof-name {
-    font-size: 0.95rem;
-}
-
-/* ----------------------------------------------------
+/* ---------------------------------------------------------
    CONTACT LINKS
----------------------------------------------------- */
+--------------------------------------------------------- */
 
 .contact-block {
-    margin-top: 30px;
-    border-top: 1px solid #333;
-    padding-top: 15px;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.3);
 }
 
 .contact-block a {
     display: block;
-    color: #7cc4ff;
     margin-bottom: 8px;
+    color: #cce6ff;
     text-decoration: none;
+    font-size: 14px;
 }
 
 .contact-block a:hover {
     text-decoration: underline;
 }
 
-/* ----------------------------------------------------
-   MAIN CONTENT AREA
----------------------------------------------------- */
+/* ---------------------------------------------------------
+   MAIN CONTENT
+--------------------------------------------------------- */
 
 .main-content {
-    margin-left: 260px; /* espacio del sidebar */
+    margin-left: 260px;
+    margin-top: 60px;
     padding: 40px;
-    box-sizing: border-box;
     max-width: 1100px;
+    box-sizing: border-box;
 }
 
 h1, h2 {
     color: #fff;
 }
 
-/* videos */
 video {
     width: 100%;
     max-width: 900px;
+    border: 1px solid #444;
     border-radius: 6px;
-    border: 1px solid #333;
     margin-bottom: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
 }
 
 section {
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }

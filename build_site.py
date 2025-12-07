@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-import html
 
 # -----------------------------------------
 # PATHS
@@ -9,6 +8,9 @@ import html
 ROOT = Path(__file__).parent
 DOCS_DIR = ROOT / "docs"
 VIDEOS_ROOT = ROOT / "assets" / "videos"
+
+# Repo path en GitHub Pages: /animations
+BASE_URL = "/animations"
 
 # Categorías principales
 CATEGORIES = [
@@ -42,17 +44,22 @@ def title_from_name(name: str) -> str:
 def list_video_files(folder: Path):
     if not folder.exists():
         return []
-    return sorted([
-        f for f in folder.iterdir()
-        if f.is_file() and f.suffix.lower() in VIDEO_EXTS
-    ], key=lambda x: x.name.lower())
+    return sorted(
+        [
+            f for f in folder.iterdir()
+            if f.is_file() and f.suffix.lower() in VIDEO_EXTS
+        ],
+        key=lambda x: x.name.lower()
+    )
 
 
 def list_subfolders(folder: Path):
     if not folder.exists():
         return []
-    return sorted([d for d in folder.iterdir() if d.is_dir()],
-                  key=lambda x: x.name.lower())
+    return sorted(
+        [d for d in folder.iterdir() if d.is_dir()],
+        key=lambda x: x.name.lower()
+    )
 
 
 def write_html(path: Path, content: str):
@@ -60,14 +67,8 @@ def write_html(path: Path, content: str):
     path.write_text(content, encoding="utf-8")
 
 
-# -----------------------------------------
-# LECTURA DE TEMPLATES
-# -----------------------------------------
-
-def read_template(name):
+def read_template(name: str) -> str:
     path = DOCS_DIR / name
-    if not path.exists():
-        raise FileNotFoundError(f"Missing template: {path}")
     return path.read_text(encoding="utf-8")
 
 
@@ -79,15 +80,13 @@ def make_index_page():
     template_top = read_template("_template_top.html")
     template_bottom = read_template("_template_bottom.html")
 
-    # links a categorías
-    links = [
-        f'<li><a href="{slug}.html">{title}</a></li>'
-        for slug, title in CATEGORIES
-        if (VIDEOS_ROOT / slug).exists()
-    ]
+    links = []
+    for slug, title in CATEGORIES:
+        if (VIDEOS_ROOT / slug).exists():
+            links.append(f'<li><a href="{BASE_URL}/{slug}.html">{title}</a></li>')
 
     body = f"""
-<h1>Welcome to GeomechMotion Animations</h1>
+<h1>GeomechMotion — Numerical Modelling Animations</h1>
 <p>Select a category to explore animations:</p>
 
 <ul>
@@ -111,27 +110,30 @@ def make_category_page(cat_slug: str, cat_title: str):
     subfolders = list_subfolders(cat_dir)
 
     if subfolders:
-        # Mostrar solo subcarpetas
         items = []
         for sub in subfolders:
             sub_slug = slug_from_name(sub.name)
             sub_title = title_from_name(sub.name)
-            items.append(f'<li><a href="{cat_slug}/{sub_slug}.html">{sub_title}</a></li>')
+            items.append(
+                f'<li><a href="{BASE_URL}/{cat_slug}/{sub_slug}.html">{sub_title}</a></li>'
+            )
 
         body = f"""
 <h1>{cat_title}</h1>
+
 <ul>
     {''.join(items)}
 </ul>
-<p><a href="index.html">Back to home</a></p>
+
+<p><a href="{BASE_URL}/index.html">Back to home</a></p>
 """
     else:
-        # Mostrar videos directamente
         videos = list_video_files(cat_dir)
         blocks = []
         for vid in videos:
             title = title_from_name(vid.name)
-            src = f"../assets/videos/{cat_slug}/{vid.name}"
+            # ruta absoluta para GitHub Pages
+            src = f"{BASE_URL}/assets/videos/{cat_slug}/{vid.name}"
             blocks.append(f"""
 <section>
     <video controls>
@@ -147,7 +149,7 @@ def make_category_page(cat_slug: str, cat_title: str):
         body = f"""
 <h1>{cat_title}</h1>
 {''.join(blocks)}
-<p><a href="index.html">Back to home</a></p>
+<p><a href="{BASE_URL}/index.html">Back to home</a></p>
 """
 
     full = template_top + body + template_bottom
@@ -155,7 +157,7 @@ def make_category_page(cat_slug: str, cat_title: str):
 
 
 # -----------------------------------------
-# SUB-PÁGINA: SUBCARPETA
+# SUBPÁGINA: SUBCARPETA
 # -----------------------------------------
 
 def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
@@ -170,7 +172,7 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
 
     for vid in videos:
         title = title_from_name(vid.name)
-        src = f"../../assets/videos/{cat_slug}/{subfolder.name}/{vid.name}"
+        src = f"{BASE_URL}/assets/videos/{cat_slug}/{subfolder.name}/{vid.name}"
         blocks.append(f"""
 <section>
     <video controls>
@@ -190,8 +192,8 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
 {''.join(blocks)}
 
 <p>
-    <a href="../{cat_slug}.html">Back to {cat_title}</a> |
-    <a href="../index.html">Home</a>
+    <a href="{BASE_URL}/{cat_slug}.html">Back to {cat_title}</a> |
+    <a href="{BASE_URL}/index.html">Home</a>
 </p>
 """
 
@@ -205,27 +207,29 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
 # -----------------------------------------
 
 def main():
-    print("Generating site with sidebar layout...")
+    if not DOCS_DIR.exists():
+        DOCS_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Crear index
+    print("Generating site for", BASE_URL)
+
+    # index
     make_index_page()
-    print("✔ index.html")
+    print("✔ docs/index.html")
 
-    # Crear categoría + subcategorías
+    # categorías y subcarpetas
     for slug, title in CATEGORIES:
         cat_dir = VIDEOS_ROOT / slug
         if not cat_dir.exists():
             continue
 
         make_category_page(slug, title)
-        print(f"✔ {slug}.html")
+        print(f"✔ docs/{slug}.html")
 
-        # subcarpetas
         for sub in list_subfolders(cat_dir):
             make_subcategory_page(slug, title, sub)
-            print(f"  ✔ Subpage {sub.name}")
+            print(f"  ✔ docs/{slug}/{slug_from_name(sub.name)}.html")
 
-    print("\n🎉 DONE — Your academic-style site is ready!\n")
+    print("\n🎉 DONE — Site generated.")
 
 
 if __name__ == "__main__":
