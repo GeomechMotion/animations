@@ -29,30 +29,41 @@ a {
     flex-direction: column;
     overflow-y: auto;
     box-sizing: border-box;
+    gap: 18px;
 }
 
 /* Logo */
 .gm-logo {
     display: flex;
     justify-content: center;
-    margin-bottom: 6px;
+}
+
+.logo-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
 }
 
 .brand-name {
     text-align: center;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 700;
 }
 
 .brand-desc {
+    text-align: center;
     font-size: 12px;
     opacity: 0.8;
-    text-align: center;
-    margin-bottom: 18px;
 }
 
 /* ============================================
-   PROFILE (Your info)
+   PROFILE SECTION
 ============================================ */
 .person-block {
     display: flex;
@@ -66,8 +77,8 @@ a {
     border-radius: 50%;
     background: rgba(255,255,255,0.25);
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     font-weight: 700;
     font-size: 16px;
 }
@@ -80,6 +91,7 @@ a {
 .profile-name {
     color: white;
     font-weight: 600;
+    font-size: 15px;
     display: flex;
     align-items: center;
     gap: 4px;
@@ -89,22 +101,20 @@ a {
     text-decoration: underline;
 }
 
+.lnk-icon {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
 .profile-desc {
     font-size: 11.5px;
     opacity: 0.9;
-    line-height: 1.3;
     margin-top: 2px;
-}
-
-/* LinkedIn icons */
-.icon-li, .icon-li-sm {
-    width: 14px;
-    height: 14px;
-    fill: #dbe8ff;
+    line-height: 1.3;
 }
 
 /* ============================================
-   SECTIONS
+   SECTION TITLES
 ============================================ */
 .section-title {
     margin-top: 20px;
@@ -114,7 +124,9 @@ a {
     opacity: 0.9;
 }
 
-/* Lists */
+/* ============================================
+   LISTS (COURSES + RESOURCES)
+============================================ */
 .course-list,
 .uba-links {
     padding-left: 20px;
@@ -126,7 +138,6 @@ a {
     margin-bottom: 6px;
 }
 
-/* Sidebar links */
 .sidebar a {
     color: #e3ecff;
 }
@@ -137,7 +148,7 @@ a {
 }
 
 /* ============================================
-   FACULTY
+   FACULTY SECTION
 ============================================ */
 .prof-mini {
     display: flex;
@@ -155,6 +166,13 @@ a {
     justify-content: center;
     align-items: center;
     font-weight: 700;
+}
+
+.prof-mini-name {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 /* ============================================
