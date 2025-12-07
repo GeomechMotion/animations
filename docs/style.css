@@ -1,0 +1,162 @@
+/* ---------------------------------------------------------
+   FONTS
+--------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+/* ---------------------------------------------------------
+   BASE STYLES
+--------------------------------------------------------- */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #111;
+    color: #e5e5e5;
+    font-family: "Inter", sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------------------------------------------------------
+   NAVBAR SUPERIOR
+--------------------------------------------------------- */
+
+.navbar {
+    width: 100%;
+    background: #1b1b1b;
+    padding: 12px 24px;
+    display: flex;
+    gap: 24px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    border-bottom: 1px solid #333;
+}
+
+.navbar a {
+    color: #e5e5e5;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.navbar a:hover {
+    color: #7cc4ff;
+}
+
+/* ---------------------------------------------------------
+   SIDEBAR IZQUIERDO (AZUL UBA)
+--------------------------------------------------------- */
+
+.sidebar {
+    position: fixed;
+    top: 48px; /* debajo del navbar */
+    left: 0;
+    width: 260px;
+    bottom: 0;
+    background: #0055A4; /* azul UBA */
+    padding: 22px;
+    box-sizing: border-box;
+    color: white;
+    overflow-y: auto;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+/* ---------------------------------------------------------
+   COURSE SECTION
+--------------------------------------------------------- */
+
+.course-block {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+}
+
+.course-block h3 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    text-align: center;
+}
+
+.prof-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.prof {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.prof-img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+/* ---------------------------------------------------------
+   CONTACT LINKS
+--------------------------------------------------------- */
+
+.contact-block {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+}
+
+.contact-block a {
+    display: block;
+    margin-bottom: 8px;
+    color: #cce6ff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.contact-block a:hover {
+    text-decoration: underline;
+}
+
+/* ---------------------------------------------------------
+   MAIN CONTENT
+--------------------------------------------------------- */
+
+.main-content {
+    margin-left: 260px;
+    margin-top: 60px;
+    padding: 40px;
+    max-width: 1100px;
+    box-sizing: border-box;
+}
+
+h1, h2 {
+    color: #fff;
+}
+
+video {
+    width: 100%;
+    max-width: 900px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+section {
+    margin-bottom: 60px;
+}
