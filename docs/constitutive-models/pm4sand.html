@@ -1,58 +1,99 @@
 <link rel="stylesheet" href="/animations/style.css">
 
-<!-- SIDEBAR -->
 <div class="sidebar">
 
-    <div class="brand">GeomechMotion</div>
+    <!-- LOGO -->
+    <div class="gm-logo">
+        <svg width="38" height="38" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="white" opacity="0.15"/>
+            <text x="50" y="58" text-anchor="middle" fill="white" font-size="38" font-weight="700" font-family="Inter">G</text>
+        </svg>
+    </div>
+
+    <div class="brand-name">GeomechMotion</div>
+    <div class="brand-desc">
+        Geotechnical • Numerical Modelling • Animations
+    </div>
 
     <!-- TU PERFIL -->
     <div class="person-block">
-        <div class="small-avatar">N</div>
-        <div class="person-name">
-            <a href="https://linkedin.com" target="_blank">Nicolás Tasso</a>
-            <span class="linkedin-icon">🔗</span>
+        <div class="profile-avatar">N</div>
+        <div class="profile-info">
+            <a class="profile-name" href="https://linkedin.com" target="_blank">
+                Nicolás Tasso
+                <svg class="icon-li" viewBox="0 0 448 512">
+                    <path fill="currentColor"
+                        d="M100.28 448H7.4V148.9h92.88zm-46.44-341C24.1 107
+                        0 82.9 0 53.7 0 24.5 24.1.4 53.84.4a53.8 53.8 0 
+                        110 107.5zM447.9 448h-92.6V302.4c0-34.7-.7-79.3-48.3-79.3-48.3 
+                        0-55.7 37.7-55.7 76.7V448h-92.6V148.9h88.9v40.8h1.3c12.4-23.5 
+                        42.5-48.3 87.4-48.3 93.5 0 110.7 61.5 110.7 141.3z" />
+                </svg>
+            </a>
+
+            <div class="profile-desc">
+                Tailings & Numerical Modelling Engineer — WSP Australia<br>
+                Assistant Professor — UBA
+            </div>
         </div>
     </div>
 
-    <div class="person-desc">
-        Tailings & Numerical Modelling Engineer — WSP Australia<br>
-        Assistant Professor — UBA
-    </div>
-
-    <!-- Cursos -->
+    <!-- COURSES -->
     <div class="section-title">Courses</div>
 
-    <!-- LINKS UBA -->
-    <ul class="uba-links">
-        <li><a href="https://www.uba.ar" target="_blank">UBA Homepage</a></li>
-        <li><a href="https://www.fi.uba.ar" target="_blank">UBA — Faculty of Engineering</a></li>
-        <li><a href="https://www.linkedin.com" target="_blank">Specialization Program (placeholder)</a></li>
-        <li><a href="https://www.linkedin.com" target="_blank">GNI Resources (placeholder)</a></li>
-        <li><a href="https://www.linkedin.com" target="_blank">GNII Resources (placeholder)</a></li>
-    </ul>
-
-    <!-- Cursos específicos -->
     <ul class="course-list">
-        <li><a href="https://www.linkedin.com" target="_blank">Geotecnia Numérica I (GNI)</a></li>
-        <li><a href="https://www.linkedin.com" target="_blank">Geotecnia Numérica II (GNII)</a></li>
+        <li><a href="#" class="course-link">Geotecnia Numérica I (GNI)</a></li>
+        <li><a href="#" class="course-link">Geotecnia Numérica II (GNII)</a></li>
     </ul>
 
-    <!-- DOCENTES -->
     <div class="section-title">Faculty</div>
 
     <div class="prof-mini">
         <div class="prof-mini-img">F</div>
-        <div>Felipe López</div>
+        <div class="prof-mini-name">
+            Felipe López
+            <a href="https://linkedin.com" target="_blank">
+                <svg class="icon-li-sm" viewBox="0 0 448 512">
+                    <path fill="currentColor"
+                        d="M100.28 448H7.4V148.9h92.88zm-46.44-341C24.1 107
+                        0 82.9 0 53.7 0 24.5 24.1.4 53.84.4a53.8 53.8 0 
+                        110 107.5zM447.9 448h-92.6V302.4c0-34.7-.7-79.3-48.3-79.3-48.3 
+                        0-55.7 37.7-55.7 76.7V448h-92.6V148.9h88.9v40.8h1.3c12.4-23.5 
+                        42.5-48.3 87.4-48.3 93.5 0 110.7 61.5 110.7 141.3z" />
+                </svg>
+            </a>
+        </div>
     </div>
+
     <div class="prof-mini">
         <div class="prof-mini-img">A</div>
-        <div>Alejo Sfriso</div>
+        <div class="prof-mini-name">
+            Alejo Sfriso
+            <a href="https://linkedin.com" target="_blank">
+                <svg class="icon-li-sm" viewBox="0 0 448 512">
+                    <path fill="currentColor"
+                        d="M100.28 448H7.4V148.9h92.88zm-46.44-341C24.1 107
+                        0 82.9 0 53.7 0 24.5 24.1.4 53.84.4a53.8 53.8 0 
+                        110 107.5zM447.9 448h-92.6V302.4c0-34.7-.7-79.3-48.3-79.3-48.3 
+                        0-55.7 37.7-55.7 76.7V448h-92.6V148.9h88.9v40.8h1.3c12.4-23.5 
+                        42.5-48.3 87.4-48.3 93.5 0 110.7 61.5 110.7 141.3z" />
+                </svg>
+            </a>
+        </div>
     </div>
 
-</div>
-<!--  ⬆⬆⬆ ESTE CIERRE ES EL QUE FALTABA EN TU VERSIÓN -->
+    <div class="section-title">Resources</div>
 
-<!-- NAVBAR -->
+    <ul class="uba-links">
+        <li><a href="https://www.uba.ar" target="_blank">UBA Homepage</a></li>
+        <li><a href="https://www.fi.uba.ar" target="_blank">UBA — Engineering</a></li>
+        <li><a href="#" target="_blank">Specialization Program</a></li>
+        <li><a href="#" target="_blank">GNI Materials</a></li>
+        <li><a href="#" target="_blank">GNII Materials</a></li>
+    </ul>
+
+</div>
+
 <div class="navbar">
     <a href="/animations/index.html">Home</a>
     <a href="/animations/constitutive-models.html">Constitutive Models</a>
@@ -60,7 +101,6 @@
     <a href="/animations/undergraduate.html">Undergraduate</a>
 </div>
 
-<!-- MAIN CONTENT -->
 <div class="main-content">
 
 <h1>Pm4sand</h1>
