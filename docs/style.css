@@ -4,46 +4,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
 /* ---------------------------------------------------------
-   BASE STYLES
+   BASE
 --------------------------------------------------------- */
 
 body {
     margin: 0;
     padding: 0;
-    background: #111;
-    color: #e5e5e5;
+    background: #f7f7f7;          /* gris MUY suave */
+    color: #222;
     font-family: "Inter", sans-serif;
-    display: flex;
-    flex-direction: column;
-}
-
-/* ---------------------------------------------------------
-   NAVBAR SUPERIOR
---------------------------------------------------------- */
-
-.navbar {
-    width: 100%;
-    background: #1b1b1b;
-    padding: 12px 24px;
-    display: flex;
-    gap: 24px;
-    box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    border-bottom: 1px solid #333;
-}
-
-.navbar a {
-    color: #e5e5e5;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 15px;
-}
-
-.navbar a:hover {
-    color: #7cc4ff;
 }
 
 /* ---------------------------------------------------------
@@ -52,80 +21,113 @@ body {
 
 .sidebar {
     position: fixed;
-    top: 48px; /* debajo del navbar */
+    top: 0;
     left: 0;
-    width: 260px;
     bottom: 0;
-    background: #0055A4; /* azul UBA */
-    padding: 22px;
+    width: 260px;
+    background: #0055A4;          /* azul UBA */
+    color: #ffffff;
+    padding: 24px 20px;
     box-sizing: border-box;
-    color: white;
     overflow-y: auto;
 }
 
-.logo {
-    font-size: 22px;
+.logo-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px auto;
+    font-size: 26px;
     font-weight: 600;
-    text-align: center;
-    margin-bottom: 25px;
-    letter-spacing: 1px;
 }
 
-/* ---------------------------------------------------------
-   COURSE SECTION
---------------------------------------------------------- */
-
-.course-block {
-    margin-top: 15px;
-    padding-top: 10px;
-    border-top: 1px solid rgba(255,255,255,0.3);
+.logo-name {
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 4px;
 }
 
-.course-block h3 {
-    margin: 0 0 12px 0;
-    font-size: 16px;
+.logo-desc {
     text-align: center;
+    font-size: 13px;
+    line-height: 1.4;
+    opacity: 0.9;
+    margin-bottom: 18px;
+}
+
+/* Cursos y docentes */
+
+.section-title {
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
 }
 
 .prof-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
+    margin-bottom: 10px;
 }
 
 .prof {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    font-size: 13px;
 }
 
 .prof-img {
-    width: 38px;
-    height: 38px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     background: rgba(255,255,255,0.25);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     font-weight: 600;
+    font-size: 14px;
 }
 
-/* ---------------------------------------------------------
-   CONTACT LINKS
---------------------------------------------------------- */
+.prof-name {
+    font-size: 13px;
+}
+
+/* lista de cursos */
+
+.course-list {
+    margin: 0;
+    padding-left: 16px;
+    font-size: 13px;
+}
+
+.course-list li {
+    margin-bottom: 4px;
+}
+
+/* Links importantes */
 
 .contact-block {
-    margin-top: 20px;
+    margin-top: 18px;
     padding-top: 10px;
     border-top: 1px solid rgba(255,255,255,0.3);
+    font-size: 13px;
 }
 
 .contact-block a {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     color: #cce6ff;
     text-decoration: none;
-    font-size: 14px;
 }
 
 .contact-block a:hover {
@@ -133,30 +135,78 @@ body {
 }
 
 /* ---------------------------------------------------------
-   MAIN CONTENT
+   NAVBAR SUPERIOR (ARRANCA DONDE TERMINA EL SIDEBAR)
+--------------------------------------------------------- */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 260px;                  /* arranca donde termina el sidebar */
+    right: 0;
+    height: 48px;
+    background: #1f1f1f;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    box-sizing: border-box;
+    gap: 24px;
+    border-bottom: 1px solid #333;
+    z-index: 10;
+}
+
+.navbar a {
+    color: #e5e5e5;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.navbar a:hover {
+    color: #7cc4ff;
+}
+
+/* ---------------------------------------------------------
+   CONTENIDO PRINCIPAL
 --------------------------------------------------------- */
 
 .main-content {
-    margin-left: 260px;
-    margin-top: 60px;
-    padding: 40px;
-    max-width: 1100px;
+    margin-left: 260px;           /* espacio del sidebar */
+    padding: 70px 40px 40px 40px; /* 70px para despegar de la navbar */
     box-sizing: border-box;
+    max-width: 1100px;
 }
 
 h1, h2 {
-    color: #fff;
+    color: #111;
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+h2 {
+    margin-top: 32px;
+    margin-bottom: 12px;
+}
+
+p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+/* vídeo + bloque */
+
+section {
+    margin-bottom: 40px;
 }
 
 video {
     width: 100%;
     max-width: 900px;
-    border: 1px solid #444;
     border-radius: 6px;
-    margin-bottom: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
-}
-
-section {
-    margin-bottom: 60px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    margin-bottom: 8px;
 }
