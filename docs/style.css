@@ -22,13 +22,13 @@ a:hover {
     left: 0;
     width: 260px;
     height: 100vh;
-    background: #0055a4; /* UBA azul */
+    background: #0055a4; 
     color: white;
     padding: 20px;
     overflow-y: auto;
 }
 
-/* LOGO CÍRCULO */
+/* LOGO */
 
 .brand-logo {
     width: 60px;
@@ -43,7 +43,7 @@ a:hover {
     margin: 0 auto 10px auto;
 }
 
-/* GEOMECHMOTION NAME */
+/* BRAND SECTION */
 
 .brand-name {
     text-align: center;
@@ -98,7 +98,7 @@ a:hover {
     margin-top: 3px;
 }
 
-/* SECTION TITLES */
+/* TITLES */
 
 .section-title {
     margin-top: 15px;
@@ -107,7 +107,7 @@ a:hover {
     font-weight: bold;
 }
 
-/* COURSE LIST */
+/* COURSES */
 
 .course-list {
     padding-left: 20px;
@@ -117,8 +117,6 @@ a:hover {
 .course-list li {
     margin-bottom: 6px;
 }
-
-/* SPA TAG */
 
 .spa-label {
     font-size: 11px;
@@ -130,7 +128,7 @@ a:hover {
     font-size: 14px;
 }
 
-/* FACULTY LIST */
+/* FACULTY */
 
 .prof-mini {
     display: flex;
@@ -154,7 +152,7 @@ a:hover {
     font-size: 13px;
 }
 
-/* RESOURCES SMALLER FONT */
+/* RESOURCES */
 
 .uba-links li a {
     font-size: 12px;
