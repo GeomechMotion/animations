@@ -1,3 +1,12 @@
+/* ===================================================================== */
+/*                           GLOBAL SETTINGS                              */
+/* ===================================================================== */
+
+/* FIX PRINCIPAL: hace que width incluya padding y border */
+html, body, *, *::before, *::after {
+    box-sizing: border-box;
+}
+
 /* === GENERAL === */
 body {
     margin: 0;
@@ -14,7 +23,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 320px;
+    width: 320px;      /* ancho REAL ahora (padding ya incluido) */
     height: 100vh;
     background: #0057a3;
     color: white;
@@ -49,7 +58,7 @@ body {
 
 .brand-name {
     text-align: center;
-    font-size: 22px;   /* reducido */
+    font-size: 22px;  /* reducido */
     font-weight: 700;
     margin-top: 5px;
 }
@@ -57,12 +66,11 @@ body {
 .brand-desc {
     text-align: center;
     margin-bottom: 10px;
-    font-size: 13px;   /* reducido */
+    font-size: 13px;  /* reducido */
 }
 
-/* --- INTRO TEXT --- */
 .intro-text {
-    font-size: 14px;   /* reducido */
+    font-size: 14px;  /* reducido */
     line-height: 1.35;
     margin: 15px 0 25px 0;
 }
@@ -73,7 +81,7 @@ body {
     display: flex;
     gap: 12px;
     margin-bottom: 10px;
-    align-items: center;
+    align-items: center;  /* FIX: avatar circular */
 }
 
 .profile-avatar {
@@ -89,20 +97,19 @@ body {
 }
 
 .profile-name {
-    font-size: 15px;  /* reducido */
+    font-size: 15px;   /* reducido */
     font-weight: bold;
 }
 
 .profile-desc {
-    font-size: 12px;  /* reducido */
+    font-size: 12px;   /* reducido */
     line-height: 1.35;
-    margin-top: 2px;
 }
 
 .icon-li {
-    width: 12px;   /* reducida */
-    vertical-align: middle;
+    width: 12px;   /* reducido */
     margin-left: 4px;
+    vertical-align: middle;
 }
 
 /* --- SECTIONS --- */
@@ -115,8 +122,6 @@ body {
     padding-bottom: 4px;
 }
 
-/* --- COURSES / LINKS --- */
-
 .course-list li {
     margin-bottom: 5px;
     font-size: 14px;   /* reducido */
@@ -124,8 +129,6 @@ body {
 
 .spa-label {
     font-size: 12px;
-    opacity: 0.9;
-    margin-left: 4px;
 }
 
 .prof-mini {
@@ -165,7 +168,7 @@ body {
 .navbar {
     position: fixed;
     top: 0;
-    left: 320px;
+    left: 320px;     /* AHORA COINCIDE EXACTO CON EL BORDE DEL SIDEBAR */
     right: 0;
     height: 50px;
     background: #111;
@@ -194,7 +197,7 @@ body {
 
 .main-content {
     margin-left: 320px;
-    padding: 80px 40px 40px 40px;
+    padding: 80px 40px 40px 40px; /* espacio por navbar */
 }
 
 .main-content a {
