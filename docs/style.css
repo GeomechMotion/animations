@@ -6,7 +6,10 @@ body {
     color: #111;
 }
 
-/* === SIDEBAR === */
+/* ===================================================================== */
+/*                               SIDEBAR                                 */
+/* ===================================================================== */
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -17,6 +20,7 @@ body {
     color: white;
     padding: 20px;
     overflow-y: auto;
+    z-index: 1000;   /* ✔ NECESARIO PARA LAYERS */
 }
 
 .sidebar a {
@@ -28,7 +32,8 @@ body {
     text-decoration: underline;
 }
 
-/* === BRAND === */
+/* --- BRAND --- */
+
 .brand-logo {
     width: 150px;
     height: 150px;
@@ -55,19 +60,20 @@ body {
     font-size: 14px;
 }
 
-/* INTRO TEXT */
+/* --- INTRO TEXT --- */
 .intro-text {
     font-size: 15px;
     line-height: 1.35;
     margin: 15px 0 25px 0;
 }
 
-/* === PROFILE === */
+/* --- PROFILE --- */
+
 .person-block {
     display: flex;
     gap: 12px;
     margin-bottom: 10px;
-    align-items: center; /* FIX PARA CÍRCULO PERFECTO */
+    align-items: center;   /* ✔ FIX: evita avatar ovalado */
 }
 
 .profile-avatar {
@@ -99,7 +105,8 @@ body {
     margin-left: 4px;
 }
 
-/* === SECTIONS === */
+/* --- SECTIONS --- */
+
 .section-title {
     margin-top: 25px;
     font-weight: bold;
@@ -108,7 +115,8 @@ body {
     padding-bottom: 4px;
 }
 
-/* === COURSES === */
+/* --- COURSES --- */
+
 .course-list li {
     margin-bottom: 5px;
     font-size: 15px;
@@ -120,7 +128,8 @@ body {
     margin-left: 4px;
 }
 
-/* === FACULTY === */
+/* --- FACULTY MINI BLOCKS --- */
+
 .prof-mini {
     display: flex;
     align-items: center;
@@ -143,7 +152,8 @@ body {
     font-size: 14px;
 }
 
-/* === RESOURCES === */
+/* --- RESOURCES --- */
+
 .uba-links {
     font-size: 13px;
 }
@@ -152,11 +162,14 @@ body {
     margin-bottom: 4px;
 }
 
-/* === NAVBAR (FIXED) === */
+/* ===================================================================== */
+/*                               NAVBAR                                   */
+/* ===================================================================== */
+
 .navbar {
     position: fixed;
     top: 0;
-    left: 320px;
+    left: 320px;        /* ✔ empieza a la derecha del sidebar */
     right: 0;
     height: 50px;
     background: #111;
@@ -164,7 +177,8 @@ body {
     display: flex;
     align-items: center;
     padding-left: 20px;
-    z-index: 9999; /* FIX PARA QUE SEA VISIBLE */
+    z-index: 2000;      /* ✔ por encima del sidebar */
+    border-bottom: 1px solid #222; /* opcional pero elegante */
 }
 
 .navbar a {
@@ -178,10 +192,13 @@ body {
     text-decoration: underline;
 }
 
-/* === MAIN CONTENT === */
+/* ===================================================================== */
+/*                             MAIN CONTENT                               */
+/* ===================================================================== */
+
 .main-content {
     margin-left: 320px;
-    padding: 80px 40px 40px 40px;
+    padding: 80px 40px 40px 40px; /* espacio por navbar */
 }
 
 .main-content a {
