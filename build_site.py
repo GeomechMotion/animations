@@ -1,3 +1,4 @@
+
 import os
 from pathlib import Path
 
@@ -109,20 +110,21 @@ def make_index_page():
 
     <div style="display: flex; align-items: flex-start; gap: 2rem;">
         <div style="flex: 1;">
-            <p>I've created this collection of animations for my graduate courses, 'Numerical Geotechnics I and II', and for various conferences. The idea is to use these short videos to help explain complex topics in geomechanics and numerical modeling in a more visual, intuitive way. Feel free to use these animations if you find them helpful.</p>
+            <p>This collection of animations has been developed for graduate courses, such as 'Numerical Geotechnics I and II', and for various conferences. The purpose of these short videos is to explain complex topics in geomechanics and numerical modeling in a more visual and intuitive way.</p>
+            <p>These animations are intended for educational purposes and are freely available. You are encouraged to use them in your teaching, presentations, or other academic work if you find them helpful for illustrating these concepts.</p>
+
+            <hr style="border: 0; border-top: 1px solid #ccc; margin: 2rem 0;">
+
+            <p>The animations are grouped into the following categories:</p>
+
+            <ul>
+                {links_html}
+            </ul>
         </div>
-        <div style="flex-shrink: 0; width: 450px;">
+        <div style="flex-shrink: 0; width: 900px;">
             <video src="{video_src}" style="width: 100%; border-radius: 8px;" autoplay muted loop playsinline></video>
         </div>
     </div>
-
-    <hr style="border: 0; border-top: 1px solid #ccc; margin: 2rem 0;">
-
-    <p>The animations are grouped into the following categories:</p>
-
-    <ul>
-        {links_html}
-    </ul>
 '''
 
     full = template_top + body + template_bottom
