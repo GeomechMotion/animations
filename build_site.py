@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent
 DOCS_DIR = ROOT / "docs"
-VIDEOS_ROOT = ROOT / "assets" / "videos"
+VIDEOS_ROOT = DOCS_DIR / "assets" / "videos"
 
 # Repo path en GitHub Pages: /animations
 BASE_URL = "/animations"
@@ -25,6 +25,7 @@ VIDEO_EXTS = {".mp4", ".webm", ".mov", ".m4v", ".gif"}
 # -----------------------------------------
 # UTILIDADES
 # -----------------------------------------
+
 
 def slug_from_name(name: str) -> str:
     base = os.path.splitext(name)[0]
@@ -46,10 +47,11 @@ def list_video_files(folder: Path):
         return []
     return sorted(
         [
-            f for f in folder.iterdir()
+            f
+            for f in folder.iterdir()
             if f.is_file() and f.suffix.lower() in VIDEO_EXTS
         ],
-        key=lambda x: x.name.lower()
+        key=lambda x: x.name.lower(),
     )
 
 
@@ -57,8 +59,7 @@ def list_subfolders(folder: Path):
     if not folder.exists():
         return []
     return sorted(
-        [d for d in folder.iterdir() if d.is_dir()],
-        key=lambda x: x.name.lower()
+        [d for d in folder.iterdir() if d.is_dir()], key=lambda x: x.name.lower()
     )
 
 
@@ -76,6 +77,7 @@ def read_template(name: str) -> str:
 # PÁGINA PRINCIPAL (INDEX)
 # -----------------------------------------
 
+
 def make_index_page():
     template_top = read_template("_template_top.html")
     template_bottom = read_template("_template_bottom.html")
@@ -85,12 +87,13 @@ def make_index_page():
         if (VIDEOS_ROOT / slug).exists():
             links.append(f'<li><a href="{BASE_URL}/{slug}.html">{title}</a></li>')
 
+    links_html = "".join(links)
     body = f"""
 <h1>GeomechMotion — Numerical Modelling Animations</h1>
 <p>Select a category to explore animations:</p>
 
 <ul>
-    {''.join(links)}
+    {links_html}
 </ul>
 """
 
@@ -101,6 +104,7 @@ def make_index_page():
 # -----------------------------------------
 # PÁGINA DE CATEGORÍA
 # -----------------------------------------
+
 
 def make_category_page(cat_slug: str, cat_title: str):
     template_top = read_template("_template_top.html")
@@ -118,11 +122,12 @@ def make_category_page(cat_slug: str, cat_title: str):
                 f'<li><a href="{BASE_URL}/{cat_slug}/{sub_slug}.html">{sub_title}</a></li>'
             )
 
+        items_html = "".join(items)
         body = f"""
 <h1>{cat_title}</h1>
 
 <ul>
-    {''.join(items)}
+    {items_html}
 </ul>
 
 <p><a href="{BASE_URL}/index.html">Back to home</a></p>
@@ -134,21 +139,24 @@ def make_category_page(cat_slug: str, cat_title: str):
             title = title_from_name(vid.name)
             # ruta absoluta para GitHub Pages
             src = f"{BASE_URL}/assets/videos/{cat_slug}/{vid.name}"
-            blocks.append(f"""
+            blocks.append(
+                f"""
 <section>
     <video controls>
         <source src="{src}">
     </video>
     <p>Animation: {title}</p>
 </section>
-""")
+"""
+            )
 
         if not blocks:
             blocks.append("<p>No videos available yet.</p>")
 
+        blocks_html = "".join(blocks)
         body = f"""
 <h1>{cat_title}</h1>
-{''.join(blocks)}
+{blocks_html}
 <p><a href="{BASE_URL}/index.html">Back to home</a></p>
 """
 
@@ -159,6 +167,7 @@ def make_category_page(cat_slug: str, cat_title: str):
 # -----------------------------------------
 # SUBPÁGINA: SUBCARPETA
 # -----------------------------------------
+
 
 def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
     template_top = read_template("_template_top.html")
@@ -173,23 +182,26 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
     for vid in videos:
         title = title_from_name(vid.name)
         src = f"{BASE_URL}/assets/videos/{cat_slug}/{subfolder.name}/{vid.name}"
-        blocks.append(f"""
+        blocks.append(
+            f"""
 <section>
     <video controls>
         <source src="{src}">
     </video>
     <p>Animation: {title}</p>
 </section>
-""")
+"""
+        )
 
     if not blocks:
         blocks.append("<p>No videos available.</p>")
 
+    blocks_html = "".join(blocks)
     body = f"""
 <h1>{sub_title}</h1>
 <p>Category: {cat_title}</p>
 
-{''.join(blocks)}
+{blocks_html}
 
 <p>
     <a href="{BASE_URL}/{cat_slug}.html">Back to {cat_title}</a> |
@@ -205,6 +217,7 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
 # -----------------------------------------
 # MAIN
 # -----------------------------------------
+
 
 def main():
     if not DOCS_DIR.exists():
