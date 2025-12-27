@@ -105,7 +105,7 @@ def make_index_page():
     video_src = f"{BASE_URL}/assets/videos/Load_intro.mp4"
     body = f'''
     <div style="background-color: #d4edda; border-color: #c3e6cb; color: #155724; padding: .75rem 1.25rem; margin-bottom: 1rem; border: 1px solid transparent; border-radius: .25rem;">
-        The animations presented here are for educational purposes and may contain errors or inaccuracies. If you find one, please don't hesitate to email ntasso@fi.uba.ar.
+        The animations presented here were created quickly for conferences and educational purposes, and therefore may contain errors or inaccuracies. If you find one, please don't hesitate to email ntasso@fi.uba.ar.
     </div>
 
     <div style="display: flex; align-items: flex-start; gap: 2rem;">
@@ -121,7 +121,7 @@ def make_index_page():
                 {links_html}
             </ul>
         </div>
-        <div style="flex-shrink: 0; width: 900px;">
+        <div style="flex-shrink: 0; width: 700px;">
             <video src="{video_src}" style="width: 100%; border-radius: 8px;" autoplay muted loop playsinline></video>
         </div>
     </div>
