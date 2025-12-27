@@ -11,7 +11,7 @@ html, body, *, *::before, *::after {
 body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
-    background: #f4f4f4;
+    background: #FFFFFF;
     color: #111;
 }
 
@@ -44,8 +44,8 @@ body {
 /* --- BRAND --- */
 
 .brand-logo {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     background: rgba(255,255,255,0.15);
     border-radius: 50%;
     display: flex;
