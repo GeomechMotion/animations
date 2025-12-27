@@ -56,6 +56,11 @@ body {
     margin: 0 auto 15px auto;
 }
 
+.brand-logo img {
+    width: 80%;
+    height: 80%;
+}
+
 .brand-name {
     text-align: center;
     font-size: 22px;  /* reducido */
@@ -135,7 +140,7 @@ body {
     font-size: 14px;   /* reducido */
 }
 
-.spa-label {
+.flag-icon {
     font-size: 12px;
 }
 
