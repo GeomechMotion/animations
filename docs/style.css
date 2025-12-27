@@ -118,9 +118,21 @@ body {
     line-height: 1.35;
 }
 
+.profile-name-line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+}
+
+.icon-group {
+    display: inline-flex;
+    gap: 4px;
+    vertical-align: middle;
+}
+
 .icon-li {
     width: 12px;   /* reducido */
-    margin-left: 4px;
     vertical-align: middle;
 }
 
@@ -164,6 +176,13 @@ body {
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid white;
+}
+
+.prof-mini-details {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px 8px;
 }
 
 .prof-mini-name {
