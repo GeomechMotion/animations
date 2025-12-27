@@ -96,6 +96,13 @@ body {
     font-weight: 600;
 }
 
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .profile-name {
     font-size: 15px;   /* reducido */
     font-weight: bold;
