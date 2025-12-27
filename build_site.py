@@ -103,6 +103,7 @@ def make_index_page():
 
     links_html = "\n".join(links)
     video_src = f"{BASE_URL}/assets/videos/Load_intro.mp4"
+    caption_text = "Presión de poros (arriba) y magnitud de desplazamientos (abajo) bajo la aplicación de una carga en el modelo HS-Small."
     body = f'''
     <div style="background-color: #d4edda; border-color: #c3e6cb; color: #155724; padding: .75rem 1.25rem; margin-bottom: 1rem; border: 1px solid transparent; border-radius: .25rem;">
         The animations presented here were created quickly for conferences and educational purposes, and therefore may contain errors or inaccuracies. If you find one, please don't hesitate to email ntasso@fi.uba.ar.
@@ -125,6 +126,7 @@ def make_index_page():
         </div>
         <div style="flex-shrink: 0; width: 450px;">
             <video src="{video_src}" style="width: 100%; border-radius: 8px;" autoplay muted loop playsinline></video>
+            <p style="font-size: 0.9em; font-style: italic; color: #6c757d; text-align: center; margin-top: 0.5em;">{caption_text}</p>
         </div>
     </div>
 '''
