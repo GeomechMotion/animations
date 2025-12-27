@@ -82,20 +82,48 @@ def make_index_page():
     template_top = read_template("_template_top.html")
     template_bottom = read_template("_template_bottom.html")
 
+    descriptions = {
+        "constitutive-models": "Animations illustrating the behavior of different soil constitutive models, focusing on visualizing the complex stress-strain relationships.",
+        "plaxis": "Analyses performed with PLAXIS, a leading geotechnical finite element software. See how meshes are generated and deform under different load scenarios.",
+        "undergraduate": "A set of animations for undergraduate students, simplifying fundamental geotechnical concepts to make them more accessible.",
+    }
+
     links = []
     for slug, title in CATEGORIES:
         if (VIDEOS_ROOT / slug).exists():
-            links.append(f'<li><a href="{BASE_URL}/{slug}.html">{title}</a></li>')
+            desc = descriptions.get(slug, "")
+            links.append(
+                f'''<li><a href="{BASE_URL}/{slug}.html">{title}</a> - {desc}</li>'''
+            )
 
-    links_html = "".join(links)
-    body = f"""
-<h1>GeomechMotion — Numerical Modelling Animations</h1>
-<p>Select a category to explore animations:</p>
+    links.append(
+        "<li><b>FLAC (WIP)</b> - Animations made with FLAC are a work in progress. Stay tuned for future updates!</li>"
+    )
 
-<ul>
-    {links_html}
-</ul>
-"""
+    links_html = "\n".join(links)
+    video_src = f"{BASE_URL}/assets/videos/Load_intro.mp4"
+    body = f'''
+    <div style="background-color: #d4edda; border-color: #c3e6cb; color: #155724; padding: .75rem 1.25rem; margin-bottom: 1rem; border: 1px solid transparent; border-radius: .25rem;">
+        The animations presented here are for educational purposes and may contain errors or inaccuracies. If you find one, please don't hesitate to email ntasso@fi.uba.ar.
+    </div>
+
+    <div style="display: flex; align-items: flex-start; gap: 2rem;">
+        <div style="flex: 1;">
+            <p>I've created this collection of animations for my graduate courses, 'Numerical Geotechnics I and II', and for various conferences. The idea is to use these short videos to help explain complex topics in geomechanics and numerical modeling in a more visual, intuitive way.</p>
+        </div>
+        <div style="flex-shrink: 0; width: 300px;">
+            <video src="{video_src}" style="width: 100%; border-radius: 8px;" autoplay muted loop playsinline></video>
+        </div>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid #ccc; margin: 2rem 0;">
+
+    <p>The animations are grouped into the following categories:</p>
+
+    <ul>
+        {links_html}
+    </ul>
+'''
 
     full = template_top + body + template_bottom
     write_html(DOCS_DIR / "index.html", full)
@@ -119,11 +147,11 @@ def make_category_page(cat_slug: str, cat_title: str):
             sub_slug = slug_from_name(sub.name)
             sub_title = title_from_name(sub.name)
             items.append(
-                f'<li><a href="{BASE_URL}/{cat_slug}/{sub_slug}.html">{sub_title}</a></li>'
+                f'''<li><a href="{BASE_URL}/{cat_slug}/{sub_slug}.html">{sub_title}</a></li>'''
             )
 
         items_html = "".join(items)
-        body = f"""
+        body = f'''
 <h1>{cat_title}</h1>
 
 <ul>
@@ -131,7 +159,7 @@ def make_category_page(cat_slug: str, cat_title: str):
 </ul>
 
 <p><a href="{BASE_URL}/index.html">Back to home</a></p>
-"""
+'''
     else:
         videos = list_video_files(cat_dir)
         blocks = []
@@ -140,25 +168,25 @@ def make_category_page(cat_slug: str, cat_title: str):
             # ruta absoluta para GitHub Pages
             src = f"{BASE_URL}/assets/videos/{cat_slug}/{vid.name}"
             blocks.append(
-                f"""
+                f'''
 <section>
     <video controls>
         <source src="{src}">
     </video>
     <p>Animation: {title}</p>
 </section>
-"""
+'''
             )
 
         if not blocks:
             blocks.append("<p>No videos available yet.</p>")
 
         blocks_html = "".join(blocks)
-        body = f"""
+        body = f'''
 <h1>{cat_title}</h1>
 {blocks_html}
 <p><a href="{BASE_URL}/index.html">Back to home</a></p>
-"""
+'''
 
     full = template_top + body + template_bottom
     write_html(DOCS_DIR / f"{cat_slug}.html", full)
@@ -183,21 +211,21 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
         title = title_from_name(vid.name)
         src = f"{BASE_URL}/assets/videos/{cat_slug}/{subfolder.name}/{vid.name}"
         blocks.append(
-            f"""
+            f'''
 <section>
     <video controls>
         <source src="{src}">
     </video>
     <p>Animation: {title}</p>
 </section>
-"""
+'''
         )
 
     if not blocks:
         blocks.append("<p>No videos available.</p>")
 
     blocks_html = "".join(blocks)
-    body = f"""
+    body = f'''
 <h1>{sub_title}</h1>
 <p>Category: {cat_title}</p>
 
@@ -207,7 +235,7 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
     <a href="{BASE_URL}/{cat_slug}.html">Back to {cat_title}</a> |
     <a href="{BASE_URL}/index.html">Home</a>
 </p>
-"""
+'''
 
     out_path = DOCS_DIR / cat_slug / f"{sub_slug}.html"
     full = template_top + body + template_bottom
