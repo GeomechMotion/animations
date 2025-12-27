@@ -121,7 +121,7 @@ def make_index_page():
                 {links_html}
             </ul>
         </div>
-        <div style="flex-shrink: 0; width: 700px;">
+        <div style="flex-shrink: 0; width: 500px;">
             <video src="{video_src}" style="width: 100%; border-radius: 8px;" autoplay muted loop playsinline></video>
         </div>
     </div>
