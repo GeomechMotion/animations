@@ -258,3 +258,41 @@ body {
     color: #555;
     line-height: 1.6;
 }
+
+/* ===================================================================== */
+/*                        RESPONSIVE DESIGN (MOBILE)                       */
+/* ===================================================================== */
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none; /* Oculta el sidebar en pantallas pequeñas */
+    }
+
+    .navbar {
+        left: 0; /* La navbar ocupa todo el ancho */
+        width: 100%;
+    }
+
+    .main-content {
+        margin-left: 0; /* El contenido principal ocupa todo el ancho */
+        padding: 70px 15px 20px 15px; /* Ajusta el padding */
+    }
+
+    .detailed-list li strong {
+        font-size: 16px;
+    }
+
+    .detailed-list li p {
+        font-size: 14px;
+    }
+
+    /* Ajusta el ancho del video en la página de inicio */
+    .main-content .flex-container > div:last-child {
+        width: 100% !important; 
+    }
+
+    /* Ajusta el contenido flexible para que se apile verticalmente */
+    .flex-container {
+        flex-direction: column;
+    }
+}

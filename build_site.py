@@ -108,10 +108,12 @@ def make_index_page():
         The animations presented here were created quickly for conferences and educational purposes, and therefore may contain errors or inaccuracies. If you find one, please don't hesitate to email ntasso@fi.uba.ar.
     </div>
 
-    <div style="display: flex; align-items: flex-start; gap: 2rem;">
+    <div class="flex-container" style="display: flex; align-items: flex-start; gap: 2rem;">
         <div style="flex: 1;">
             <p>This collection of animations has been developed for graduate courses, such as 'Numerical Geotechnics I and II', and for various conferences. The purpose of these short videos is to explain complex topics in geomechanics and numerical modeling in a more visual and intuitive way.</p>
             <p>These animations are intended for educational purposes and are freely available. You are encouraged to use them in your teaching, presentations, or other academic work if you find them helpful for illustrating these concepts.</p>
+            
+            <p>For more animations and resources on constitutive models, be sure to check out <a href="https://soilmodels.com/soilanim/" target="_blank">SoilAnim</a> by the SoilModels team.</p>
 
             <hr style="border: 0; border-top: 1px solid #ccc; margin: 2rem 0;">
 
@@ -121,7 +123,7 @@ def make_index_page():
                 {links_html}
             </ul>
         </div>
-        <div style="flex-shrink: 0; width: 500px;">
+        <div style="flex-shrink: 0; width: 450px;">
             <video src="{video_src}" style="width: 100%; border-radius: 8px;" autoplay muted loop playsinline></video>
         </div>
     </div>
