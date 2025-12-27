@@ -22,11 +22,20 @@ CATEGORIES = [
 
 VIDEO_EXTS = {".mp4", ".webm", ".mov", ".m4v", ".gif"}
 
+MODEL_NAMES = {
+    "camclay": "Modified Cam-Clay Model",
+    "hss": "Hardening Soil with Small-Strain Stiffness (HS-Small)",
+    "mc": "Mohr-Coulomb Model",
+    "norsand": "Nor-Sand Model",
+    "pm4sand": "PM4Sand Model",
+    "pm4silt": "PM4Silt Model",
+    "sclay1s": "S-CLAY1S Model",
+}
+
 
 # -----------------------------------------
 # UTILIDADES
 # -----------------------------------------
-
 
 def slug_from_name(name: str) -> str:
     base = os.path.splitext(name)[0]
@@ -36,12 +45,10 @@ def slug_from_name(name: str) -> str:
         base = base.replace("--", "-")
     return base.lower() or "page"
 
-
 def title_from_name(name: str) -> str:
     base = os.path.splitext(name)[0]
     base = base.replace("_", " ").replace("-", " ")
     return " ".join(w.capitalize() for w in base.split())
-
 
 def list_video_files(folder: Path):
     if not folder.exists():
@@ -55,7 +62,6 @@ def list_video_files(folder: Path):
         key=lambda x: x.name.lower(),
     )
 
-
 def list_subfolders(folder: Path):
     if not folder.exists():
         return []
@@ -63,11 +69,9 @@ def list_subfolders(folder: Path):
         [d for d in folder.iterdir() if d.is_dir()], key=lambda x: x.name.lower()
     )
 
-
 def write_html(path: Path, content: str):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8")
-
 
 def read_template(name: str) -> str:
     path = DOCS_DIR / name
@@ -77,7 +81,6 @@ def read_template(name: str) -> str:
 # -----------------------------------------
 # PÁGINA PRINCIPAL (INDEX)
 # -----------------------------------------
-
 
 def make_index_page():
     template_top = read_template("_template_top.html")
@@ -103,7 +106,7 @@ def make_index_page():
 
     links_html = "\n".join(links)
     video_src = f"{BASE_URL}/assets/videos/Load_intro.mp4"
-    caption_text = "Presión de poros (arriba) y magnitud de desplazamientos (abajo) bajo la aplicación de una carga en el modelo HS-Small."
+    caption_text = "Pore pressure (top) and magnitude of displacements (bottom) under a load application in the HS-Small model."
     body = f'''
     <div style="background-color: #d4edda; border-color: #c3e6cb; color: #155724; padding: .75rem 1.25rem; margin-bottom: 1rem; border: 1px solid transparent; border-radius: .25rem;">
         The animations presented here were created quickly for conferences and educational purposes, and therefore may contain errors or inaccuracies. If you find one, please don't hesitate to email ntasso@fi.uba.ar.
@@ -124,7 +127,7 @@ def make_index_page():
                 {links_html}
             </ul>
         </div>
-        <div style="flex-shrink: 0; width: 450px;">
+        <div style="flex-shrink: 0; width: 400px;">
             <video src="{video_src}" style="width: 100%; border-radius: 8px;" autoplay muted loop playsinline></video>
             <p style="font-size: 0.9em; font-style: italic; color: #6c757d; text-align: center; margin-top: 0.5em;">{caption_text}</p>
         </div>
@@ -139,7 +142,6 @@ def make_index_page():
 # PÁGINA DE CATEGORÍA
 # -----------------------------------------
 
-
 def make_category_page(cat_slug: str, cat_title: str):
     template_top = read_template("_template_top.html")
     template_bottom = read_template("_template_bottom.html")
@@ -147,31 +149,32 @@ def make_category_page(cat_slug: str, cat_title: str):
     cat_dir = VIDEOS_ROOT / cat_slug
     subfolders = list_subfolders(cat_dir)
 
+    body = f"<h1>{cat_title}</h1>"
+
+    if cat_slug == "constitutive-models":
+        body += "<p>In this section you will find the videos used to (try to) explain how constitutive models work. The existing videos are (for now) of the following models:</p>"
+
     if subfolders:
         items = []
         for sub in subfolders:
             sub_slug = slug_from_name(sub.name)
-            sub_title = title_from_name(sub.name)
+            
+            if cat_slug == "constitutive-models":
+                sub_title = MODEL_NAMES.get(sub.name.lower(), title_from_name(sub.name))
+            else:
+                sub_title = title_from_name(sub.name)
+
             items.append(
                 f'''<li><a href="{BASE_URL}/{cat_slug}/{sub_slug}.html">{sub_title}</a></li>'''
             )
-
         items_html = "".join(items)
-        body = f'''
-<h1>{cat_title}</h1>
+        body += f"<ul>{items_html}</ul>"
 
-<ul>
-    {items_html}
-</ul>
-
-<p><a href="{BASE_URL}/index.html">Back to home</a></p>
-'''
     else:
         videos = list_video_files(cat_dir)
         blocks = []
         for vid in videos:
             title = title_from_name(vid.name)
-            # ruta absoluta para GitHub Pages
             src = f"{BASE_URL}/assets/videos/{cat_slug}/{vid.name}"
             blocks.append(
                 f'''
@@ -188,11 +191,9 @@ def make_category_page(cat_slug: str, cat_title: str):
             blocks.append("<p>No videos available yet.</p>")
 
         blocks_html = "".join(blocks)
-        body = f'''
-<h1>{cat_title}</h1>
-{blocks_html}
-<p><a href="{BASE_URL}/index.html">Back to home</a></p>
-'''
+        body += blocks_html
+
+    body += f'\n\n<p><a href="{BASE_URL}/index.html">Back to home</a></p>\n'
 
     full = template_top + body + template_bottom
     write_html(DOCS_DIR / f"{cat_slug}.html", full)
@@ -201,7 +202,6 @@ def make_category_page(cat_slug: str, cat_title: str):
 # -----------------------------------------
 # SUBPÁGINA: SUBCARPETA
 # -----------------------------------------
-
 
 def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
     template_top = read_template("_template_top.html")
@@ -251,7 +251,6 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
 # -----------------------------------------
 # MAIN
 # -----------------------------------------
-
 
 def main():
     if not DOCS_DIR.exists():
