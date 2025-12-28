@@ -301,11 +301,29 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
         "PM4Sand.mp4": "Simulation of a cyclic direct simple shear test."
     }
 
+    pm4silt_captions = {
+        "Catalogue.mp4": "Simulation of a cyclic direct simple shear test (CDSS)."
+    }
+
+    sclay1s_captions = {
+        "OED.mp4": "Simulation of an oedometer test.",
+        "TRXCAD.mp4": "Simulation of a K0 consolidated drained triaxial test with an intermediate unloading stage.",
+        "TRXCAU1.mp4": "Simulation of a K0 consolidated undrained triaxial test with an intermediate unloading stage at a slow speed.",
+        "TRXCAU10.mp4": "Simulation of a K0 consolidated undrained triaxial test with an intermediate unloading stage at a medium speed.",
+        "TRXCAU100.mp4": "Simulation of a K0 consolidated undrained triaxial test with an intermediate unloading stage at a very high speed.",
+        "TRXVELVAR.mp4": "Simulation of a K0 consolidated undrained triaxial test with variable strain rate."
+    }
+
     for vid in videos:
         src = f"{BASE_URL}/assets/videos/{cat_slug}/{subfolder.name}/{vid.name}"
         
-        video_style = "width: 70%; border-radius: 8px; margin-left: auto; margin-right: auto; display: block;"
-        caption_wrapper_style = "width: 70%; margin: auto;"
+        if sub_slug == "pm4silt":
+            video_style = "width: 100%; border-radius: 8px; display: block;"
+            caption_wrapper_style = "width: 100%; margin: auto;"
+        else:
+            video_style = "width: 70%; border-radius: 8px; margin-left: auto; margin-right: auto; display: block;"
+            caption_wrapper_style = "width: 70%; margin: auto;"
+
         caption_p_style = "font-size: 0.9em; font-style: italic; color: #6c757d; text-align: center; margin-top: 0.5em;"
         caption_text = title_from_name(vid.name)
 
@@ -320,6 +338,10 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
                 caption_text = norsand_captions.get(vid.name, caption_text)
             elif sub_slug == "pm4sand":
                 caption_text = pm4sand_captions.get(vid.name, caption_text)
+            elif sub_slug == "pm4silt":
+                caption_text = pm4silt_captions.get(vid.name, caption_text)
+            elif sub_slug == "sclay1s":
+                caption_text = sclay1s_captions.get(vid.name, caption_text)
 
         caption_tag = f'''
 <div style="{caption_wrapper_style}">
@@ -390,8 +412,13 @@ def main():
         print(f"✔ docs/{slug}.html")
 
         for sub in list_subfolders(cat_dir):
-            make_subcategory_page(slug, title, sub)
-            print(f"  ✔ docs/{slug}/{slug_from_name(sub.name)}.html")
+            # Corregir el nombre de la subcarpeta a minúsculas para la comparación
+            if sub.name.lower() == "sclay1s":
+                make_subcategory_page(slug, title, sub)
+                print(f"  ✔ docs/{slug}/{slug_from_name(sub.name)}.html")
+            else:
+                make_subcategory_page(slug, title, sub)
+                print(f"  ✔ docs/{slug}/{slug_from_name(sub.name)}.html")
 
     print("\n🎉 DONE — Site generated.")
 
