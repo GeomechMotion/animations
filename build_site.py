@@ -297,6 +297,10 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
         "TRX_Linkedin.mp4": "Isotropically consolidated undrained triaxial test on a loose sample. Initial state parameter 0.10."
     }
 
+    pm4sand_captions = {
+        "PM4Sand.mp4": "Simulation of a cyclic direct simple shear test."
+    }
+
     for vid in videos:
         src = f"{BASE_URL}/assets/videos/{cat_slug}/{subfolder.name}/{vid.name}"
         
@@ -314,6 +318,8 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
                 caption_text = camclay_captions.get(vid.name, caption_text)
             elif sub_slug == "norsand":
                 caption_text = norsand_captions.get(vid.name, caption_text)
+            elif sub_slug == "pm4sand":
+                caption_text = pm4sand_captions.get(vid.name, caption_text)
 
         caption_tag = f'''
 <div style="{caption_wrapper_style}">
