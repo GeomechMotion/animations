@@ -169,7 +169,7 @@ def make_category_page(cat_slug: str, cat_title: str):
 
     if cat_slug == "constitutive-models":
         video_src = f"{BASE_URL}/assets/videos/ConstModel_intro.mp4"
-        caption_text = "Yield surface evolution for different constitutive models under a triaxial stress path."
+        caption_text = "NorSand yield surface evolution during isotropically consolidated undrained triaxial test on a loose sample."
         
         items = []
         for model_slug in MODEL_ORDER:
