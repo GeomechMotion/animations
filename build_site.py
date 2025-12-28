@@ -250,21 +250,35 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
     template_bottom = read_template("_template_bottom.html")
 
     sub_slug = slug_from_name(subfolder.name)
-    sub_title = title_from_name(subfolder.name)
-
+    sub_title = MODEL_NAMES.get(subfolder.name.lower(), title_from_name(subfolder.name))
+    
     videos = list_video_files(subfolder)
     blocks = []
 
+    mc_captions = {
+        "TRX CIDC - MC model.mp4": "Stress path for a Consolidated Isotropically Drained Compression (CIDC) triaxial test, shown in the p-q plane (top left), q-εa plane (top right), deviatoric plane (bottom left), and Mohr's circles (bottom right).",
+        "TRX CIUC - MC model.mp4": "Stress path for a Consolidated Isotropically Undrained Compression (CIUC) triaxial test, shown in the p-q plane (top left), q-εa plane (top right), deviatoric plane (bottom left), and Mohr's circles (bottom right)."
+    }
+
     for vid in videos:
-        title = title_from_name(vid.name)
         src = f"{BASE_URL}/assets/videos/{cat_slug}/{subfolder.name}/{vid.name}"
+        
+        video_style = "width: 100%; border-radius: 8px;"
+        caption_text = title_from_name(vid.name)
+        caption_tag = f'<p>Animation: {caption_text}</p>'
+
+        if cat_slug == "constitutive-models" and sub_slug == "mc":
+            video_style = "width: 70%; border-radius: 8px; margin-left: auto; margin-right: auto; display: block;"
+            caption_text = mc_captions.get(vid.name, caption_text)
+            caption_tag = f'<p style="font-size: 0.9em; font-style: italic; color: #6c757d; text-align: center; margin-top: 0.5em;">{caption_text}</p>'
+
         blocks.append(
             f'''
-<section>
-    <video controls>
+<section style="margin-bottom: 2rem; text-align: center;">
+    <video controls style="{video_style}">
         <source src="{src}">
     </video>
-    <p>Animation: {title}</p>
+    {caption_tag}
 </section>
 '''
         )
@@ -273,9 +287,16 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
         blocks.append("<p>No videos available.</p>")
 
     blocks_html = "".join(blocks)
+    
+    page_description = ""
+    if cat_slug == "constitutive-models":
+        description = MODEL_DESCRIPTIONS.get(sub_slug)
+        if description:
+            page_description = f"<p>{description}</p>"
+
     body = f'''
 <h1>{sub_title}</h1>
-<p>Category: {cat_title}</p>
+{page_description}
 
 {blocks_html}
 
@@ -313,18 +334,9 @@ def main():
         make_category_page(slug, title)
         print(f"✔ docs/{slug}.html")
 
-        # Create subcategory pages only if it's not the constitutive-models page
-        if slug != "constitutive-models":
-            for sub in list_subfolders(cat_dir):
-                make_subcategory_page(slug, title, sub)
-                print(f"  ✔ docs/{slug}/{slug_from_name(sub.name)}.html")
-        else: # For constitutive models, the sub-pages are created from the main list
-             for model_slug in MODEL_ORDER:
-                subfolder_path = cat_dir / model_slug
-                if subfolder_path.exists():
-                     make_subcategory_page(slug, title, subfolder_path)
-                     print(f"  ✔ docs/{slug}/{slug_from_name(subfolder_path.name)}.html")
-
+        for sub in list_subfolders(cat_dir):
+            make_subcategory_page(slug, title, sub)
+            print(f"  ✔ docs/{slug}/{slug_from_name(sub.name)}.html")
 
     print("\n🎉 DONE — Site generated.")
 
