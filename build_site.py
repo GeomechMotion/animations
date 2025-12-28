@@ -273,6 +273,19 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
         "TRX CIUC - HSS model_EDOCLASE.mp4": "Simulation of an oedometer test. p-q plot (top left), q-εa plot (top right), deviatoric plane (bottom left), and Mohr's circles (bottom right).",
     }
 
+    camclay_captions = {
+        "CIDC_HighOC.mp4": "Isotropically consolidated drained triaxial test on a highly overconsolidated sample.",
+        "CIDC_HighOC_Dilatancy.mp4": "Isotropically consolidated drained triaxial test on a highly overconsolidated sample.",
+        "CIDC_NC.mp4": "Isotropically consolidated drained triaxial test on a normally consolidated sample.",
+        "CIDC_lightOC.mp4": "Isotropically consolidated drained triaxial test on a lightly overconsolidated sample.",
+        "CIUC_NC.mp4": "Isotropically consolidated undrained triaxial test on a normally consolidated sample.",
+        "CIUC_OC.mp4": "Isotropically consolidated undrained triaxial test on an overconsolidated sample.",
+        "ISO.mp4": "Isotropic compression test on a normally consolidated sample.",
+        "OED.mp4": "Oedometer compression test on a normally consolidated sample.",
+        "TRX_CIDC_OC.mp4": "Isotropically consolidated drained triaxial test on an overconsolidated sample.",
+        "TRX_Linkedin.mp4": "Isotropically consolidated drained triaxial test on a lightly overconsolidated sample."
+    }
+
     for vid in videos:
         src = f"{BASE_URL}/assets/videos/{cat_slug}/{subfolder.name}/{vid.name}"
         
@@ -286,6 +299,8 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
                 caption_text = mc_captions.get(vid.name, caption_text)
             elif sub_slug == "hss":
                 caption_text = hss_captions.get(vid.name, caption_text)
+            elif sub_slug == "camclay":
+                caption_text = camclay_captions.get(vid.name, caption_text)
 
         caption_tag = f'''
 <div style="{caption_wrapper_style}">
