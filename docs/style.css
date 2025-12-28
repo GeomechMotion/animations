@@ -2,7 +2,7 @@
 /*                           GLOBAL SETTINGS                              */
 /* ===================================================================== */
 
-/* FIX PRINCIPAL: hace que width incluya padding y border */
+/* MAIN FIX: makes width include padding and border */
 html, body, *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -23,7 +23,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 320px;      /* ancho REAL ahora (padding ya incluido) */
+    width: 320px;      /* REAL width now (padding already included) */
     height: 100vh;
     background: #0057a3;
     color: white;
@@ -61,7 +61,7 @@ body {
 
 .brand-name {
     text-align: center;
-    font-size: 22px;  /* reducido */
+    font-size: 22px;  /* reduced */
     font-weight: 700;
     margin-top: 5px;
 }
@@ -69,11 +69,11 @@ body {
 .brand-desc {
     text-align: center;
     margin-bottom: 10px;
-    font-size: 12px;  /* reducido */
+    font-size: 12px;  /* reduced */
 }
 
 .intro-text {
-    font-size: 14px;  /* reducido */
+    font-size: 14px;  /* reduced */
     line-height: 1.35;
     margin: 15px 0 25px 0;
 }
@@ -84,7 +84,7 @@ body {
     display: flex;
     gap: 12px;
     margin-bottom: 10px;
-    align-items: center;  /* FIX: avatar circular */
+    align-items: center;  /* FIX: circular avatar */
 }
 
 .profile-avatar {
@@ -109,17 +109,17 @@ body {
 }
 
 .profile-name {
-    font-size: 15px;   /* reducido */
+    font-size: 15px;   /* reduced */
     font-weight: bold;
 }
 
 .profile-desc {
-    font-size: 12px;   /* reducido */
+    font-size: 12px;   /* reduced */
     line-height: 1.35;
 }
 
 .icon-li {
-    width: 12px;   /* reducido */
+    width: 12px;   /* reduced */
     margin-left: 4px;
     vertical-align: middle;
 }
@@ -129,14 +129,14 @@ body {
 .section-title {
     margin-top: 25px;
     font-weight: bold;
-    font-size: 14px;   /* reducido */
+    font-size: 14px;   /* reduced */
     border-bottom: 1px solid rgba(255,255,255,0.3);
     padding-bottom: 4px;
 }
 
 .course-list li {
     margin-bottom: 5px;
-    font-size: 14px;   /* reducido */
+    font-size: 14px;   /* reduced */
 }
 
 .flag-icon {
@@ -167,7 +167,7 @@ body {
 }
 
 .prof-mini-name {
-    font-size: 13px;  /* reducido */
+    font-size: 13px;  /* reduced */
 }
 
 .uba-links {
@@ -185,7 +185,7 @@ body {
 .navbar {
     position: fixed;
     top: 0;
-    left: 320px;     /* AHORA COINCIDE EXACTO CON EL BORDE DEL SIDEBAR */
+    left: 320px;     /* NOW IT MATCHES THE SIDEBAR'S EDGE EXACTLY */
     right: 0;
     height: 50px;
     background: #111;
@@ -214,7 +214,7 @@ body {
 
 .main-content {
     margin-left: 320px;
-    padding: 80px 40px 40px 40px; /* espacio por navbar */
+    padding: 80px 40px 40px 40px; /* space for navbar */
 }
 
 .main-content a {
@@ -265,17 +265,17 @@ body {
 
 @media (max-width: 768px) {
     .sidebar {
-        display: none; /* Oculta el sidebar en pantallas pequeñas */
+        display: none; /* Hides the sidebar on small screens */
     }
 
     .navbar {
-        left: 0; /* La navbar ocupa todo el ancho */
+        left: 0; /* The navbar takes up the full width */
         width: 100%;
     }
 
     .main-content {
-        margin-left: 0; /* El contenido principal ocupa todo el ancho */
-        padding: 70px 15px 20px 15px; /* Ajusta el padding */
+        margin-left: 0; /* The main content takes up the full width */
+        padding: 70px 15px 20px 15px; /* Adjust padding */
     }
 
     .detailed-list li strong {
@@ -286,12 +286,12 @@ body {
         font-size: 14px;
     }
 
-    /* Ajusta el ancho del video en la página de inicio */
+    /* Adjust the video width on the homepage */
     .main-content .flex-container > div:last-child {
         width: 100% !important; 
     }
 
-    /* Ajusta el contenido flexible para que se apile verticalmente */
+    /* Adjust the flex content to stack vertically */
     .flex-container {
         flex-direction: column;
     }
