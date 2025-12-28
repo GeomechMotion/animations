@@ -197,7 +197,40 @@ def make_category_page(cat_slug: str, cat_title: str):
             </div>
         </div>
         '''
+    elif cat_slug == "plaxis":
+        video_src = f"{BASE_URL}/assets/videos/PLAXIS_intro.mp4"
+        caption_text = "Evolution of stresses and displacements during the construction of an embankment."
+        
+        subfolders = list_subfolders(cat_dir)
+        items = []
+        for sub in subfolders:
+            sub_slug = slug_from_name(sub.name)
+            sub_title = title_from_name(sub.name)
+            items.append(
+                f'''<li><a href="{BASE_URL}/{cat_slug}/{sub_slug}.html">{sub_title}</a></li>'''
+            )
+        items_html = "".join(items)
 
+        body = f'''
+        <div class="flex-container" style="display: flex; align-items: flex-start; gap: 2rem;">
+            <div style="flex: 1;">
+                <h1>{cat_title}</h1>
+                <p>In this section, you\'ll find all the animations related to problems involving meshes. These animations are valuable for a more comprehensive understanding of the constitutive model\'s behavior in a broader context. The animations include:</p>
+                <ul>
+                    <li>Undrained loading on a soft clay layer.</li>
+                    <li>Construction and liquefaction analysis of an idealized tailings dam.</li>
+                    <li>Triaxial tests with a mesh.</li>
+                </ul>
+                 <ul>
+                    {items_html}
+                </ul>
+            </div>
+            <div style="flex-shrink: 0; width: 320px;">
+                <video src="{video_src}" style="width: 100%; border-radius: 8px;" autoplay muted loop playsinline></video>
+                <p style="font-size: 0.9em; font-style: italic; color: #6c757d; text-align: center; margin-top: 0.5em;">{caption_text}</p>
+            </div>
+        </div>
+        '''
     else:
         body = f"<h1>{cat_title}</h1>"
         subfolders = list_subfolders(cat_dir)
