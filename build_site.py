@@ -263,18 +263,23 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
     for vid in videos:
         src = f"{BASE_URL}/assets/videos/{cat_slug}/{subfolder.name}/{vid.name}"
         
-        video_style = "width: 100%; border-radius: 8px;"
+        video_style = "width: 70%; border-radius: 8px; margin-left: auto; margin-right: auto; display: block;"
+        caption_wrapper_style = "width: 70%; margin: auto;"
+        caption_p_style = "font-size: 0.9em; font-style: italic; color: #6c757d; text-align: center; margin-top: 0.5em;"
         caption_text = title_from_name(vid.name)
-        caption_tag = f'<p>Animation: {caption_text}</p>'
 
         if cat_slug == "constitutive-models" and sub_slug == "mc":
-            video_style = "width: 70%; border-radius: 8px; margin-left: auto; margin-right: auto; display: block;"
             caption_text = mc_captions.get(vid.name, caption_text)
-            caption_tag = f'<p style="font-size: 0.9em; font-style: italic; color: #6c757d; text-align: center; margin-top: 0.5em;">{caption_text}</p>'
+
+        caption_tag = f'''
+<div style="{caption_wrapper_style}">
+    <p style="{caption_p_style}">{caption_text}</p>
+</div>
+'''
 
         blocks.append(
             f'''
-<section style="margin-bottom: 2rem; text-align: center;">
+<section style="margin-bottom: 2rem;">
     <video controls style="{video_style}">
         <source src="{src}">
     </video>
