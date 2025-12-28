@@ -165,9 +165,8 @@ def make_index_page():
 def make_category_page(cat_slug: str, cat_title: str):
     template_top = read_template("_template_top.html")
     template_bottom = read_template("_template_bottom.html")
-
     cat_dir = VIDEOS_ROOT / cat_slug
-    body = f"<h1>{cat_title}</h1>"
+    body = ""
 
     if cat_slug == "constitutive-models":
         video_src = f"{BASE_URL}/assets/videos/ConstModel_intro.mp4"
@@ -184,10 +183,11 @@ def make_category_page(cat_slug: str, cat_title: str):
                 items.append(f"<li>{link} - {sub_desc}</li>")
 
         items_html = "\n".join(items)
-        body += f'''
-        <p>In this section, you will find videos intended to explain how different constitutive models work. The available models are:</p>
+        body = f'''
         <div class="flex-container" style="display: flex; align-items: flex-start; gap: 2rem;">
             <div style="flex: 1;">
+                <h1>{cat_title}</h1>
+                <p>In this section, you will find videos intended to explain how different constitutive models work. The available models are:</p>
                 <ul>
                     {items_html}
                 </ul>
@@ -200,6 +200,7 @@ def make_category_page(cat_slug: str, cat_title: str):
         '''
 
     else:
+        body = f"<h1>{cat_title}</h1>"
         subfolders = list_subfolders(cat_dir)
         if subfolders:
             items = []
