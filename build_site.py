@@ -260,6 +260,19 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
         "TRX CIUC - MC model.mp4": "Stress path for a Consolidated Isotropically Undrained Compression (CIUC) triaxial test, shown in the p-q plane (top left), q-εa plane (top right), deviatoric plane (bottom left), and Mohr's circles (bottom right)."
     }
 
+    hss_captions = {
+        "HSS - CIDC y CIUC explaind.mp4": "Simulations of isotropically consolidated drained (left) and undrained (right) triaxial tests. p-q plots (top), q-εa plots (middle), and Mohr's circles (bottom).",
+        "OED - HSM.mp4": "Simulation of an oedometer test. p-q plot (top left), q-εa plot (top right), deviatoric plane (bottom left), and Mohr's circles (bottom right).",
+        "TRX CIUC - HSS model_CIDCsuelto.mp4": "Simulation of an undrained triaxial test to represent flow liquefaction. p-q plot (top left), q-εa plot (top right), deviatoric plane (bottom left), and Mohr's circles (bottom right).",
+        "TRX CIDC - HSS model.mp4": "Simulation of a drained triaxial test. p-q plot (top left), q-εa plot (top right), deviatoric plane (bottom left), and Mohr's circles (bottom right).",
+        "TRX CIDC HSS - con etapa consolidacion.mp4": "Simulation of the consolidation and shearing stages in a drained triaxial test. p-q plot (top left), q-εa plot (top right), deviatoric plane (bottom left), and Mohr's circles (bottom right).",
+        "TRX CIUC - HSS model_CIDCdenso.mp4": "Simulation of an undrained triaxial test on a dense sample. p-q plot (top left), q-εa plot (top right), deviatoric plane (bottom left), and Mohr's circles (bottom right).",
+        "TRX CIUC - HSS caso tipico.mp4": "Simulation of an undrained triaxial test on a loose sample without strain softening. p-q plot (top left), q-εa plot (top right), deviatoric plane (bottom left), and Mohr's circles (bottom right).",
+        "TRX CIUC - HSM.mp4": "Simulation of a dense undrained triaxial test. p-q plot (top left), q-εa plot (top right), deviatoric plane (bottom left), and Mohr's circles (bottom right).",
+        "TRX CIUC - HSS model.mp4": "Simulation of an undrained triaxial test. p-q plot (top left), q-εa plot (top right), deviatoric plane (bottom left), and Mohr's circles (bottom right).",
+        "TRX CIUC - HSS model_EDOCLASE.mp4": "Simulation of an oedometer test. p-q plot (top left), q-εa plot (top right), deviatoric plane (bottom left), and Mohr's circles (bottom right).",
+    }
+
     for vid in videos:
         src = f"{BASE_URL}/assets/videos/{cat_slug}/{subfolder.name}/{vid.name}"
         
@@ -268,8 +281,11 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
         caption_p_style = "font-size: 0.9em; font-style: italic; color: #6c757d; text-align: center; margin-top: 0.5em;"
         caption_text = title_from_name(vid.name)
 
-        if cat_slug == "constitutive-models" and sub_slug == "mc":
-            caption_text = mc_captions.get(vid.name, caption_text)
+        if cat_slug == "constitutive-models":
+            if sub_slug == "mc":
+                caption_text = mc_captions.get(vid.name, caption_text)
+            elif sub_slug == "hss":
+                caption_text = hss_captions.get(vid.name, caption_text)
 
         caption_tag = f'''
 <div style="{caption_wrapper_style}">
