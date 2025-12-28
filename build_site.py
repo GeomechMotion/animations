@@ -170,8 +170,8 @@ def make_category_page(cat_slug: str, cat_title: str):
     body = f"<h1>{cat_title}</h1>"
 
     if cat_slug == "constitutive-models":
-        video_src = f"{BASE_URL}/assets/videos/constitutive-models/NorSand/TRX_Linkedin.mp4"
-        caption_text = "NorSand yield surface in mean effective stress - deviatoric stress plot (top) and deviatoric plane (bottom) during a loose triaxial CIUC test"
+        video_src = f"{BASE_URL}/assets/videos/ConstModel_intro.mp4"
+        caption_text = "Yield surface evolution for different constitutive models under a triaxial stress path."
         
         items = []
         for model_slug in MODEL_ORDER:
