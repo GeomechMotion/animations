@@ -22,14 +22,34 @@ CATEGORIES = [
 
 VIDEO_EXTS = {".mp4", ".webm", ".mov", ".m4v", ".gif"}
 
+MODEL_ORDER = [
+    "mc",
+    "hss",
+    "camclay",
+    "norsand",
+    "pm4sand",
+    "pm4silt",
+    "sclay1s",
+]
+
 MODEL_NAMES = {
-    "camclay": "Modified Cam-Clay Model",
-    "hss": "Hardening Soil with Small-Strain Stiffness (HS-Small)",
-    "mc": "Mohr-Coulomb Model",
-    "norsand": "Nor-Sand Model",
-    "pm4sand": "PM4Sand Model",
-    "pm4silt": "PM4Silt Model",
-    "sclay1s": "S-CLAY1S Model",
+    "mc": "Mohr-Coulomb",
+    "hss": "HS-Small",
+    "camclay": "Cam-Clay",
+    "norsand": "NorSand",
+    "pm4sand": "PM4Sand",
+    "pm4silt": "PM4Silt",
+    "sclay1s": "Creep S-CLAY1S",
+}
+
+MODEL_DESCRIPTIONS = {
+    "mc": "A linear-elastic perfectly-plastic model.",
+    "hss": "A non-linear elastoplastic model with isotropic hardening.",
+    "camclay": "A classic critical-state model for clays.",
+    "norsand": "A critical-state model for sands.",
+    "pm4sand": "A plasticity model for earthquake engineering applications in sands.",
+    "pm4silt": "A plasticity model for earthquake engineering applications in silts.",
+    "sclay1s": "A viscoplastic anisotropic model for soft soils.",
 }
 
 
@@ -147,37 +167,59 @@ def make_category_page(cat_slug: str, cat_title: str):
     template_bottom = read_template("_template_bottom.html")
 
     cat_dir = VIDEOS_ROOT / cat_slug
-    subfolders = list_subfolders(cat_dir)
-
     body = f"<h1>{cat_title}</h1>"
 
     if cat_slug == "constitutive-models":
-        body += "<p>In this section you will find the videos used to (try to) explain how constitutive models work. The existing videos are (for now) of the following models:</p>"
-
-    if subfolders:
+        video_src = f"{BASE_URL}/assets/videos/constitutive-models/ConstMode_intro.mp4"
+        caption_text = "NorSand yield surface in mean effective stress - deviatoric stress plot (top) and deviatoric plane (bottom) during a loose triaxial CIUC test"
+        
         items = []
-        for sub in subfolders:
-            sub_slug = slug_from_name(sub.name)
+        for model_slug in MODEL_ORDER:
+            sub_slug = slug_from_name(model_slug)
+            sub_title = MODEL_NAMES.get(model_slug.lower())
+            sub_desc = MODEL_DESCRIPTIONS.get(model_slug.lower())
             
-            if cat_slug == "constitutive-models":
-                sub_title = MODEL_NAMES.get(sub.name.lower(), title_from_name(sub.name))
-            else:
-                sub_title = title_from_name(sub.name)
+            if sub_title and sub_desc:
+                link = f'<a href="{BASE_URL}/{cat_slug}/{sub_slug}.html">{sub_title}</a>'
+                items.append(f"<li>{link} - {sub_desc}</li>")
 
-            items.append(
-                f'''<li><a href="{BASE_URL}/{cat_slug}/{sub_slug}.html">{sub_title}</a></li>'''
-            )
-        items_html = "".join(items)
-        body += f"<ul>{items_html}</ul>"
+        items_html = "\n".join(items)
+        body += f'''
+        <p>In this section, you will find videos intended to explain how different constitutive models work. The available models are:</p>
+        <div class="flex-container" style="display: flex; align-items: flex-start; gap: 2rem;">
+            <div style="flex: 1;">
+                <ul>
+                    {items_html}
+                </ul>
+            </div>
+            <div style="flex-shrink: 0; width: 400px;">
+                <video src="{video_src}" style="width: 100%; border-radius: 8px;" autoplay muted loop playsinline></video>
+                <p style="font-size: 0.9em; font-style: italic; color: #6c757d; text-align: center; margin-top: 0.5em;">{caption_text}</p>
+            </div>
+        </div>
+        '''
 
     else:
-        videos = list_video_files(cat_dir)
-        blocks = []
-        for vid in videos:
-            title = title_from_name(vid.name)
-            src = f"{BASE_URL}/assets/videos/{cat_slug}/{vid.name}"
-            blocks.append(
-                f'''
+        subfolders = list_subfolders(cat_dir)
+        if subfolders:
+            items = []
+            for sub in subfolders:
+                sub_slug = slug_from_name(sub.name)
+                sub_title = title_from_name(sub.name)
+                items.append(
+                    f'''<li><a href="{BASE_URL}/{cat_slug}/{sub_slug}.html">{sub_title}</a></li>'''
+                )
+            items_html = "".join(items)
+            body += f"<ul>{items_html}</ul>"
+
+        else:
+            videos = list_video_files(cat_dir)
+            blocks = []
+            for vid in videos:
+                title = title_from_name(vid.name)
+                src = f"{BASE_URL}/assets/videos/{cat_slug}/{vid.name}"
+                blocks.append(
+                    f'''
 <section>
     <video controls>
         <source src="{src}">
@@ -185,13 +227,13 @@ def make_category_page(cat_slug: str, cat_title: str):
     <p>Animation: {title}</p>
 </section>
 '''
-            )
+                )
 
-        if not blocks:
-            blocks.append("<p>No videos available yet.</p>")
+            if not blocks:
+                blocks.append("<p>No videos available yet.</p>")
 
-        blocks_html = "".join(blocks)
-        body += blocks_html
+            blocks_html = "".join(blocks)
+            body += blocks_html
 
     body += f'\n\n<p><a href="{BASE_URL}/index.html">Back to home</a></p>\n'
 
@@ -271,9 +313,18 @@ def main():
         make_category_page(slug, title)
         print(f"✔ docs/{slug}.html")
 
-        for sub in list_subfolders(cat_dir):
-            make_subcategory_page(slug, title, sub)
-            print(f"  ✔ docs/{slug}/{slug_from_name(sub.name)}.html")
+        # Create subcategory pages only if it's not the constitutive-models page
+        if slug != "constitutive-models":
+            for sub in list_subfolders(cat_dir):
+                make_subcategory_page(slug, title, sub)
+                print(f"  ✔ docs/{slug}/{slug_from_name(sub.name)}.html")
+        else: # For constitutive models, the sub-pages are created from the main list
+             for model_slug in MODEL_ORDER:
+                subfolder_path = cat_dir / model_slug
+                if subfolder_path.exists():
+                     make_subcategory_page(slug, title, subfolder_path)
+                     print(f"  ✔ docs/{slug}/{slug_from_name(subfolder_path.name)}.html")
+
 
     print("\n🎉 DONE — Site generated.")
 
