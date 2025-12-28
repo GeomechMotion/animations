@@ -286,6 +286,17 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
         "TRX_Linkedin.mp4": "Isotropically consolidated drained triaxial test on a lightly overconsolidated sample."
     }
 
+    norsand_captions = {
+        "CIDC_psi010_full.mp4": "Isotropically consolidated drained triaxial test on a loose sample. Initial state parameter 0.10.",
+        "CIDC_psim010_full.mp4": "Isotropically consolidated drained triaxial test on a dense sample. Initial state parameter -0.10.",
+        "CIUC_psi010_full.mp4": "Isotropically consolidated undrained triaxial test on a loose sample. Initial state parameter 0.10.",
+        "CIUC_psim003_full.mp4": "Isotropically consolidated undrained triaxial test on a dense sample. Initial state parameter -0.03.",
+        "OED_psi005.mp4": "Oedometer test on a loose sample. Initial state parameter 0.05.",
+        "OED_psim010.mp4": "Oedometer test on a dense sample. Initial state parameter -0.10.",
+        "PSC_psim010.mp4": "K0 consolidated undrained triaxial test on a dense sample. Initial state parameter -0.10.",
+        "TRX_Linkedin.mp4": "Isotropically consolidated undrained triaxial test on a loose sample. Initial state parameter 0.10."
+    }
+
     for vid in videos:
         src = f"{BASE_URL}/assets/videos/{cat_slug}/{subfolder.name}/{vid.name}"
         
@@ -301,6 +312,8 @@ def make_subcategory_page(cat_slug: str, cat_title: str, subfolder: Path):
                 caption_text = hss_captions.get(vid.name, caption_text)
             elif sub_slug == "camclay":
                 caption_text = camclay_captions.get(vid.name, caption_text)
+            elif sub_slug == "norsand":
+                caption_text = norsand_captions.get(vid.name, caption_text)
 
         caption_tag = f'''
 <div style="{caption_wrapper_style}">
